@@ -4,3 +4,6 @@
 /static/keys/key_retail.bin
 /rolledup
 /extracted
+/semantic/src
+/semantic/tasks
+/semantic/gulpfile.js

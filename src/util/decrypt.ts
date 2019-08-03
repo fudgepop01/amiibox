@@ -1,9 +1,8 @@
 import * as maboii from 'maboii';
 import * as fs from 'fs';
 
-const keys = maboii.loadMasterKeys([...fs.readFileSync(__dirname + "/keys/key_retail.bin")]);
-
-const main = (file: string | Buffer) => {
+const main = (file: string | Buffer, keyPath: string) => {
+  const keys = maboii.loadMasterKeys([...fs.readFileSync(keyPath)]);
   if (file instanceof Buffer) {
     const unpacked = maboii.unpack(keys, [...file]);
     return Buffer.from(unpacked.unpacked);

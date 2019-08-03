@@ -19,9 +19,13 @@
   let params = [];
   let abilities = [];
   let data = Buffer.alloc(540);
+  let keys;
   async function load() {
+    let config = JSON.parse(await readFile(`${__dirname}/PATHS.json`, 'utf8'));
+    if (config.keys !== 'UNCONFIGURED') keys = config.keys;
+
     abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split('\n');
-    const splitted = (await readFile(`${__dirname}/amiibo/regions.txt`, 'utf8')).split('\n');
+    const splitted = (await readFile(config.regions === '__DEFAULT__' ? `${__dirname}/amiibo/regions.txt` : config.regions, 'utf8')).split('\n');
 
     params.push({});
     let lineNum = 0;
@@ -63,14 +67,14 @@
     let paths = await remote.dialog.showOpenDialog({
       message: 'open amiibo bin'
     });
-    data = decrypt(await readFile(paths[0]));
+    data = decrypt(await readFile(paths[0]), keys);
   }
 
   async function saveFile() {
     let paths = await remote.dialog.showSaveDialog({
       message: 'save amiibo bin'
     });
-    await writeFile(paths[0], encrypt(data));
+    await writeFile(paths[0], encrypt(data), keys);
 
   }
 
@@ -80,7 +84,7 @@
       closable: false,
       onApprove: async () => {
         data = await card.read();
-        data = decrypt(data);
+        data = decrypt(data, keys);
       }
     })
     .modal('show');
@@ -95,11 +99,11 @@
         let targetCard = await card.read();
         pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
 
-        targetCard = decrypt(targetCard);
+        targetCard = decrypt(targetCard, keys);
         data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
 
         sign(targetCard);
-        let encrypted = encrypt(targetCard);
+        let encrypted = encrypt(targetCard, keys);
         await card.writeData(encrypted, pw)
       }
     })
@@ -119,7 +123,7 @@
         let dest = await card.read();
         pw = calcKeyARaw(Buffer.from([...dest.slice(0, 3), ...dest.slice(4, 8)]));
 
-        let dec = decrypt(Buffer.from([...source]));
+        let dec = decrypt(Buffer.from([...source]), keys);
 
         Buffer.from([...dest.slice(0, 8)]).copy(dec, 0x1D4);
         Buffer.from(pw.match(/.{2}/g).map(v => parseInt(v, 16))).copy(dec, 0x214);
@@ -128,13 +132,12 @@
         Buffer.from([...dest.slice(8, 10)]).copy(dec, 0x00);
         Buffer.from([0x00, 0x00]).copy(dec, 0x02);
 
-        let enc = encrypt(dec);
+        let enc = encrypt(dec, keys);
 
         enc[10] = 0x0F;
         enc[11] = 0xE0;
         enc[0x208] = 0x01;
         enc[0x20A] = 0x0F;
-        // console.log([...enc.slice(0)].map(v => `0x${v.toString(16).padStart(2, '0')}`).join(', '));
         await card.writeFull(enc.slice(0));
       }
     })
@@ -197,16 +200,16 @@
       </button>
     </div>
     <div class="ui two mini buttons">
-      <button class="ui labeled icon button" on:click={() => readCard()}>
+      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => readCard()}>
         <i class="icon download"></i>
         Scan
       </button>
-      <button class="ui labeled icon button" on:click={() => writeCard()}>
+      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => writeCard()}>
         <i class="icon upload"></i>
         Apply
       </button>
     </div>
-    <button class="ui labeled icon mini fluid button" on:click={() => cloneCard()}>
+    <button class={`${keys ? '' : 'disabled red'} ui labeled icon mini fluid button`} on:click={() => cloneCard()}>
       <i class="icon plus"></i>
       Clone
     </button>

@@ -8,12 +8,12 @@
   afterUpdate(() => {
     for (const [i, param] of params.entries()) {
       params[i].value = ({
-        u8(p) { return data.readUInt8(p) },
-        i8(p) { return data.readInt8(p) },
-        u16(p) { return data.readUInt16LE(p) },
-        i16(p) { return data.readInt16LE(p) },
-        u32(p) { return data.readUInt32LE(p) },
-        i32(p) { return data.readInt32LE(p) },
+        u8(p) { params[i].min = 0; params[i].max = 255; return data.readUInt8(p) },
+        i8(p) { params[i].min = -128; params[i].max = 127; return data.readInt8(p) },
+        u16(p) { params[i].min = 0; params[i].max = 65535; return data.readUInt16LE(p) },
+        i16(p) { params[i].min = -32768; params[i].max = 32767; return data.readInt16LE(p) },
+        u32(p) { params[i].min = 0; params[i].max = 4294967295; return data.readUInt32LE(p) },
+        i32(p) { params[i].min = -2147483648; params[i].max = 2147483647; return data.readInt32LE(p) },
         HEX(p) { return 'see hex view...' },
         ABILITY(p) { return this.u8(p) }
       })[param.type](parseInt(param.start))
@@ -78,7 +78,7 @@
           (edit as hex)
         {:else}
           <div class="ui transparent input">
-            <input type="number" value={param.value} on:change={(evt) => writeAdjustment(evt.target.value, param)} placeholder="value..."/>
+            <input type="number" min={param.min} max={param.max} value={param.value} on:change={(evt) => (param.min <= evt.target.value && evt.target.value <= param.max) ? writeAdjustment(evt.target.value, param) : void 0} placeholder="value..."/>
           </div>
         {/if}
         </div>

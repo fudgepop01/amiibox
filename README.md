@@ -1,18 +1,16 @@
-# svelte-template-electron
+# Amiibox
 
-A simple boilerplate for building Electron apps with Svelte.
+## What it is
 
+Amiibox is a full-featured editor for amiibo developed by fudgepop01.
+It's extremely dynamic - all of the regions can be modified through a simple text file.
 
-## Developing
+## Development
 
-Clone the repo, and install dependencies with `npm install`. Then `npm run dev` to build the app and `npm start` to open it.
-
+Clone the repo then use `npm install` to install the necessary dependencies.
+Once that's done, use `npm run build` to build it, or `npm run dev` to develop it.
+Open another terminal window and use `npm run start` to actually start the application.
 
 ## Building
 
-`npm run build` creates a production version of the app, which can then be run with `npm start`. Instructions on creating a standalone executable to follow.
-
-
-## License
-
-[LIL](LICENSE)
+use `npm run dist` to package the application for distribution. This will appear in the `/dist` folder.
