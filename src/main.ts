@@ -26,16 +26,22 @@ function launch() {
 		height: 600,
 		minWidth: 600,
 		backgroundColor: 'white',
-		titleBarStyle: 'hidden'
+		titleBarStyle: 'hidden',
+		webPreferences: {
+			nodeIntegration: true,
+			webSecurity: false
+		}
 	});
+
 
 	win.loadURL(
 		url.format({
-			pathname: path.join(__dirname, '../static/index.html'),
+			pathname: path.resolve(__dirname, '../static/index.html'),
 			protocol: 'file:',
 			slashes: true
 		})
 	);
+
 
 	const watcher = reloadOnChange(win);
 

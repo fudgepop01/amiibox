@@ -1,28 +1,40 @@
 {
-  "name": "svelte-template-electron",
-  "version": "0.0.1",
+  "name": "amiibox",
+  "version": "0.1.0",
   "description": "A template for building Electron apps with Svelte",
-  "main": "dist/main.js",
+  "main": "rolledup/main.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development electron .",
+    "start": "cross-env NODE_ENV=production electron .",
     "dev": "rollup -cw",
     "build": "rollup -c",
-    "postinstall": "electron-builder install-app-deps"
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
+  "build": {
+    "files": [
+      "rolledup/**/*",
+      "static/**/*",
+      "semantic/dist/**",
+      "package.json"
+    ],
+    "appId": "com.fudgeapps.app",
+    "productName": "Amiibox",
+    "mac": {
+      "category": "fudgeapps"
+    }
+  },
+  "repository": "",
+  "keywords": [],
+  "author": "fudgepop01",
   "license": "CC0-1.0",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@types/node": "^12.6.8",
     "electron": "^5.0.1",
-    "electron-builder": "^20.40.2",
+    "electron-builder": "^20.44.4",
     "rollup": "^1.11.3",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^9.3.4",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^4.2.4",
@@ -34,6 +46,12 @@
   },
   "dependencies": {
     "chokidar": "^3.0.0",
-    "cross-env": "^5.2.0"
+    "crc-32": "^1.2.0",
+    "cross-env": "^5.2.0",
+    "fudgedit": "^0.2.3",
+    "jquery": "^3.4.1",
+    "maboii": "^1.1.0",
+    "nfc-pcsc": "^0.7.4",
+    "semantic-ui": "^2.4.2"
   }
 }

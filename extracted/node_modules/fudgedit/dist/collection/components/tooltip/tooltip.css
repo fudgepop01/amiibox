@@ -1,0 +1,23 @@
+fudge-hex-tooltip {
+  position: fixed;
+  display: none;
+
+  box-sizing: border-box;
+  font-size: 14px;
+  max-width: 400px;
+  padding: 5px;
+  border-radius: 2px;
+
+  background-color: #000;
+  color: white;
+
+  z-index: 1000;
+  pointer-events: none;
+}
+
+fudge-hex-tooltip[active=true] {
+  display: block;
+  left: calc(var(--mouse-x) * 1px);
+  top: calc(var(--mouse-y) * 1px);
+  transition: .2s left ease, .2s top ease;
+}
