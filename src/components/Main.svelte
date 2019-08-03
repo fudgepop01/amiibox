@@ -80,6 +80,7 @@
   }
 
   async function readCard() {
+    if (!card) await initCard();
     modalState = 'read';
     window['$']('.ui.basic.modal').modal({
       closable: false,
@@ -93,6 +94,7 @@
 
 
   async function writeCard() {
+    if (!card) await initCard();
     modalState = 'write'
     window['$']('.ui.basic.modal').modal({
       closable: false,
@@ -112,6 +114,7 @@
   }
 
   async function cloneCard() {
+    if (!card) await initCard();
     modalState = 'clone';
     let paths = await remote.dialog.showOpenDialog({
       message: 'open amiibo bin'
@@ -146,7 +149,6 @@
   }
 
   load();
-  initCard();
 
   let page = 'overview';
 </script>
