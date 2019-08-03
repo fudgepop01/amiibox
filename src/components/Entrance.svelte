@@ -7,7 +7,6 @@
 
 	let writeFile = promisify(fs.writeFile);
 	let readFile = promisify(fs.readFile);
-	let readdir = promisify(fs.readdir);
 
 	const dispatch = createEventDispatcher();
 
@@ -22,9 +21,9 @@
 			needsKeys = true;
 			return;
 		}
-		needsKeys = false;
 		config.keys = keyPath;
-		await writeFile(`${__dirname}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
+		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
+		needsKeys = false;
 	}
 
 	async function setRegions() {
@@ -34,15 +33,23 @@
 		if (!regionPath) return;
 
 		config.regions = regionPath;
-		await writeFile(`${__dirname}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
+		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
 	}
 
 	let config;
 	let needsKeys;
 	onMount(async () => {
-		config = JSON.parse(await readFile(`${__dirname}/PATHS.json`, 'utf8'));
-		needsKeys = config.keys === "UNCONFIGURED";
+		try {
+			console.log(remote.app.getPath('userData'));
+			console.log(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
+		}
+		catch (e) {
+			await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, '{"keys":"UNCONFIGURED","regions":"__DEFAULT__"}', 'utf8');
+		}
+
+		config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
 		console.log(config);
+		needsKeys = (config.keys === "UNCONFIGURED");
 	})
 </script>
 

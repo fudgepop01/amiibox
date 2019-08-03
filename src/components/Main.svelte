@@ -4,6 +4,7 @@
   import { remote } from 'electron';
   import Overview from './Overview.svelte';
   import Hex from './Hex.svelte';
+  import { EOL } from 'os';
 
   import CardIO from '../util/cardIO';
   import decrypt from '../util/decrypt';
@@ -21,11 +22,11 @@
   let data = Buffer.alloc(540);
   let keys;
   async function load() {
-    let config = JSON.parse(await readFile(`${__dirname}/PATHS.json`, 'utf8'));
+    let config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
     if (config.keys !== 'UNCONFIGURED') keys = config.keys;
 
-    abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split('\n');
-    const splitted = (await readFile(config.regions === '__DEFAULT__' ? `${__dirname}/amiibo/regions.txt` : config.regions, 'utf8')).split('\n');
+    abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split(EOL);
+    const splitted = (await readFile(config.regions === '__DEFAULT__' ? `${__dirname}/amiibo/regions.txt` : config.regions, 'utf8')).split(EOL);
 
     params.push({});
     let lineNum = 0;
