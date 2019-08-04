@@ -54,6 +54,12 @@ personality: HEX
 behavior
 determines how the amiibo behaves in-battle. Still being researched
 
+grab: u8
+0x171
+0x172
+moveset
+the chance of the amiibo running the grab routine
+
 taunt: u8
 0x181
 0x182

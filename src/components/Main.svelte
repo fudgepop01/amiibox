@@ -72,10 +72,11 @@
   }
 
   async function saveFile() {
-    let paths = await remote.dialog.showSaveDialog({
+    let p = await remote.dialog.showSaveDialog({
       message: 'save amiibo bin'
     });
-    await writeFile(paths[0], encrypt(data), keys);
+    console.log(p);
+    await writeFile(p, encrypt(data, keys));
 
   }
 
