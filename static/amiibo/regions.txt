@@ -16,6 +16,12 @@ ability 3: ABILITY
 stats
 one of the amiibo`s abilities
 
+learning: u8
+0xE2
+0xE3
+behavior
+whether or not the amiibo's AI will learn over time
+
 level exp: u16
 0x14C
 0x14E
@@ -54,11 +60,54 @@ personality: HEX
 behavior
 determines how the amiibo behaves in-battle. Still being researched
 
+aggression: u16
+0x168
+0x16A
+behavior
+how aggressive the amiibo is (a value of 0 will prevent all attacks)
+
+edgeguard: u16
+0x16A
+0x16C
+behavior
+the chance of the amiibo jumping after the opponent to edgeguard
+
+anticipation: u16
+0x16C
+0x16E
+behavior
+the chance that the amiibo will go for `reading` its opponent and anticipating its next move rather than just being super `reactive` to what the opponent does
+
+defensiveness: u16
+0x16E
+0x170
+behavior
+how often the amiibo will try to `play it safe` - as in spacing attacks, running away, etc.
+
+meteor edgeguard: u8
+0x177
+0x178
+behavior
+the chance that the amiibo will go for a footstool or a move that can spike
+the opponent, if they have access to one.
+
 grab: u8
 0x171
 0x172
 moveset
 the chance of the amiibo running the grab routine
+
+smashball collector: u16
+0x17b
+0x17d
+behavior
+the chance the amiibo will go for smash balls when they appear
+
+special flag collector: u8
+0x17d
+0x17e
+behavior
+the chance the amiibo will go for special flags when they appear
 
 taunt: u8
 0x181

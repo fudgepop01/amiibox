@@ -64,20 +64,29 @@
     await card.init();
   }
 
-  async function loadFile() {
+  async function loadFile(method) {
     let paths = await remote.dialog.showOpenDialog({
       message: 'open amiibo bin'
     });
-    data = decrypt(await readFile(paths[0]), keys);
+    if (method === 'encrypt') data = decrypt(await readFile(paths[0]), keys);
+    else data = await readFile(paths[0]);
   }
 
-  async function saveFile() {
+  async function saveFile(method) {
     let p = await remote.dialog.showSaveDialog({
       message: 'save amiibo bin'
     });
-    console.log(p);
-    await writeFile(p, encrypt(data, keys));
+    
+    data[0xE3] = 0xC0;
+    let encData = encrypt(data, keys);
+    pw = calcKeyARaw(Buffer.from([...encData.slice(0, 3), ...encData.slice(4, 8)]));
+    
+    let decData = decrypt(encData, keys);
+    data.copy(decData, 0xE0, 0xE0, 0x1B5);
+    sign(decData);
 
+    if (method === 'encrypt') await writeFile(p, encrypt(decData, keys));
+    else await writeFile(p, decData);
   }
 
   async function readCard() {
@@ -88,6 +97,7 @@
       onApprove: async () => {
         data = await card.read();
         data = decrypt(data, keys);
+        data[0xE3] = 0xC0;
       }
     })
     .modal('show');
@@ -100,6 +110,7 @@
     window['$']('.ui.basic.modal').modal({
       closable: false,
       onApprove: async () => {
+        data[0xE3] = 0xC0;
         let targetCard = await card.read();
         pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
 
@@ -194,13 +205,13 @@
   </div>
   <div class="io">
     <div class="ui two mini buttons">
-      <button class="ui labeled icon button" on:click={() => loadFile()}>
+      <button class="ui labeled icon button" on:click={() => loadFile('encrypt')}>
         <i class="icon folder open"></i>
-        Load
+        load_ENC
       </button>
-      <button class="ui labeled icon button" on:click={() => saveFile()}>
+      <button class="ui labeled icon button" on:click={() => saveFile('encrypt')}>
         <i class="icon save"></i>
-        Save
+        save_ENC
       </button>
     </div>
     <div class="ui two mini buttons">
@@ -211,6 +222,16 @@
       <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => writeCard()}>
         <i class="icon upload"></i>
         Apply
+      </button>
+    </div>
+    <div class="ui two mini buttons">
+      <button class="ui labeled icon button" on:click={() => loadFile('decrypt')}>
+        <i class="icon folder open"></i>
+        load_DEC
+      </button>
+      <button class="ui labeled icon button" on:click={() => saveFile('decrypt')}>
+        <i class="icon save"></i>
+        save_DEC
       </button>
     </div>
     <button class={`${keys ? '' : 'disabled red'} ui labeled icon mini fluid button`} on:click={() => cloneCard()}>
