@@ -22,6 +22,18 @@ learning: u8
 behavior
 whether or not the amiibo's AI will learn over time
 
+type: ENUM
+0xE3b0
+0xE3b2
+stats
+{
+  neutral:  0b00
+  attack:   0b01
+  defense:  0b10
+  grab:     0b11
+}
+the amiibo`s `typing`
+
 level exp: u16
 0x14C
 0x14E
@@ -261,3 +273,27 @@ costume: u8
 0x1A4
 misc
 the skin the amiibo has
+
+custom moves: u8
+0xff
+0x100
+misc
+the custom move the amiibo has (stored as binary)
+
+hat: u8
+0x100
+0x101
+misc
+the hat the amiibo has
+
+outfit: u8
+0x102
+0x103
+misc
+the outfit the amiibo has
+
+voice: u8
+0x1b4
+0x1b5
+misc
+deals with the voice of the amiibo

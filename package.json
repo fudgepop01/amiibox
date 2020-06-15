@@ -45,13 +45,14 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
+    "@pokusew/pcsclite": "^0.6.0",
     "chokidar": "^3.0.0",
     "crc-32": "^1.2.0",
     "cross-env": "^5.2.0",
-    "fudgedit": "^0.2.3",
-    "jquery": "^3.4.1",
+    "fudgedit": "^1.0.0",
+    "jquery": "^3.5.1",
     "maboii": "^1.1.0",
-    "nfc-pcsc": "^0.7.4",
+    "nfc-pcsc": "^0.8.0",
     "semantic-ui": "^2.4.2"
   }
 }

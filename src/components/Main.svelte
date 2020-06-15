@@ -31,6 +31,8 @@
     params.push({});
     let lineNum = 0;
     let description = '';
+
+    let isInEnum = false;
     for (const line of splitted) {
       switch(lineNum) {
         case 0:
@@ -50,11 +52,28 @@
             lineNum = 0;
             continue;
           }
+          if (params[params.length - 1].type === 'ENUM' && line.startsWith('{')) {
+            isInEnum = true;
+            params[params.length - 1].enums = {};
+            continue;
+          }
+          if (isInEnum) {
+            if (line.startsWith('}')) {
+              isInEnum = false;
+              continue;
+            } else {
+              let l = line.split(":");
+              if (l[1].trim().startsWith('0b')) l[1] = parseInt(l[1].trim().substring(2), 2);
+              else l[1] = parseInt(l[1].trim());
+              params[params.length - 1].enums[l[0].trim()] = l[1];
+            }
+          }
           else description += line + ' ';
       }
       lineNum++;
     }
     params.pop();
+    console.log(params);
   }
 
   let card;
@@ -76,11 +95,11 @@
     let p = await remote.dialog.showSaveDialog({
       message: 'save amiibo bin'
     });
-    
-    data[0xE3] = 0xC0;
+
+    data[0xE3] |= 0b00000001;
     let encData = encrypt(data, keys);
     pw = calcKeyARaw(Buffer.from([...encData.slice(0, 3), ...encData.slice(4, 8)]));
-    
+
     let decData = decrypt(encData, keys);
     data.copy(decData, 0xE0, 0xE0, 0x1B5);
     sign(decData);
@@ -97,7 +116,7 @@
       onApprove: async () => {
         data = await card.read();
         data = decrypt(data, keys);
-        data[0xE3] = 0xC0;
+        data[0xE3] |= 0b00000001;
       }
     })
     .modal('show');
@@ -110,7 +129,7 @@
     window['$']('.ui.basic.modal').modal({
       closable: false,
       onApprove: async () => {
-        data[0xE3] = 0xC0;
+        data[0xE3] |= 0b00000001;
         let targetCard = await card.read();
         pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
 

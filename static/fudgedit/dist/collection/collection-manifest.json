@@ -1,0 +1,13 @@
+{
+  "entries": [
+    "./components/hex-editor/hex-editor.js",
+    "./components/tooltip/tooltip.js"
+  ],
+  "compiler": {
+    "name": "@stencil/core",
+    "version": "1.12.3",
+    "typescriptVersion": "3.8.3"
+  },
+  "collections": [],
+  "bundles": []
+}

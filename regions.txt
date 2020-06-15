@@ -16,6 +16,18 @@ ability 3: ABILITY
 stats
 one of the amiibo`s abilities
 
+type: ENUM
+0xE3b0
+0xE3b2
+stats
+{
+  neutral:  0b00
+  attack:   0b01
+  defense:  0b10
+  grab:     0b11
+}
+the amiibo`s `typing`
+
 level exp: u16
 0x14C
 0x14E

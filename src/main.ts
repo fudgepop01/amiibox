@@ -1,6 +1,14 @@
 import * as path from 'path';
 import * as url from 'url';
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
+
+import { readFile } from 'fs';
+import { join } from 'path';
+const es6Path = join( __dirname, '..', 'static' );
+
+protocol.registerSchemesAsPrivileged([
+  { scheme: 'es6', privileges: { standard: true } }
+])
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -54,7 +62,16 @@ function launch() {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', launch);
+app.on('ready', () => {
+	protocol.registerBufferProtocol( 'es6', ( req, cb ) => {
+    readFile(
+      join( es6Path, req.url.replace( 'es6://', '' ) ),
+      (e, b) => { cb( { mimeType: 'text/javascript', data: b } ) }
+    )
+  })
+
+	launch();
+});
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
