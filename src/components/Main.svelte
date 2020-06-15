@@ -80,7 +80,7 @@
   let pw;
   async function initCard() {
     card = new CardIO();
-    await card.init();
+    return await card.init();
   }
 
   async function loadFile(method) {
@@ -109,39 +109,62 @@
   }
 
   async function readCard() {
-    if (!card) await initCard();
-    modalState = 'read';
-    window['$']('.ui.basic.modal').modal({
-      closable: false,
-      onApprove: async () => {
-        data = await card.read();
-        data = decrypt(data, keys);
-        data[0xE3] |= 0b00000001;
-      }
-    })
-    .modal('show');
+    let readerCheck = false;
+    if (!card) readerCheck = await initCard();
+    else readerCheck = true;
+    if (readerCheck) {
+      modalState = 'read';
+      window['$']('.ui.basic.modal.main').modal({
+        closable: false,
+        onApprove: async () => {
+          data = await card.read();
+          data = decrypt(data, keys);
+          data[0xE3] |= 0b00000001;
+        }
+      })
+      .modal('show');
+    } else {
+      modalState = 'no compatible card reader found';
+      window['$']('.ui.basic.modal.error').modal({
+        closable: false
+      })
+      .modal('show');
+    }
+
   }
 
 
   async function writeCard() {
-    if (!card) await initCard();
-    modalState = 'write'
-    window['$']('.ui.basic.modal').modal({
-      closable: false,
-      onApprove: async () => {
-        data[0xE3] |= 0b00000001;
-        let targetCard = await card.read();
-        pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
+    let readerCheck = false;
+    if (!card) readerCheck = await initCard();
+    else readerCheck = true;
 
-        targetCard = decrypt(targetCard, keys);
-        data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
+    if (readerCheck) {
+      modalState = 'write'
+      window['$']('.ui.basic.modal.main').modal({
+        closable: false,
+        onApprove: async () => {
+          data[0xE3] |= 0b00000001;
+          let targetCard = await card.read();
+          pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
 
-        sign(targetCard);
-        let encrypted = encrypt(targetCard, keys);
-        await card.writeData(encrypted, pw)
-      }
-    })
-    .modal('show');
+          targetCard = decrypt(targetCard, keys);
+          data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
+
+          sign(targetCard);
+          let encrypted = encrypt(targetCard, keys);
+          await card.writeData(encrypted, pw)
+        }
+      })
+      .modal('show');
+    } else {
+      modalState = 'no compatible card reader found';
+      window['$']('.ui.basic.modal.error').modal({
+        closable: false
+      })
+      .modal('show');
+    }
+
   }
 
   async function cloneCard() {
@@ -151,7 +174,7 @@
       message: 'open amiibo bin'
     })
 
-    window['$']('.ui.basic.modal').modal({
+    window['$']('.ui.basic.modal.main').modal({
       closable: false,
       onApprove: async () => {
         let source = await readFile(paths[0]);
@@ -199,7 +222,7 @@
   }
 </style>
 
-<div class="ui basic modal">
+<div class="ui basic modal main">
   <div class="ui icon header">
     <i class="microchip icon"></i>
     Place {modalState === 'clone' ? 'BLANK' : ''} card on reader
@@ -210,6 +233,19 @@
       cancel
     </div>
     <div class="ui green ok inverted button">
+      <i class="checkmark icon"></i>
+      Ok
+    </div>
+  </div>
+</div>
+
+<div class="ui basic modal error">
+  <div class="ui icon header">
+    <i class="x icon"></i>
+    {modalState}
+  </div>
+  <div class="actions">
+    <div class="ui red ok inverted button">
       <i class="checkmark icon"></i>
       Ok
     </div>

@@ -5,6 +5,8 @@
   export let abilities;
   export let data;
 
+  let displayBin = false;
+
   const reverseLookup = (obj, val) => {
     for (const [k, v] of Object.entries(obj)) {
       if (v === val) return k;
@@ -61,12 +63,12 @@
       }
       else {
         params[i].value = ({
-          u8(p) { params[i].min = 0; params[i].max = 255; return data.readUInt8(p) },
-          i8(p) { params[i].min = -128; params[i].max = 127; return data.readInt8(p) },
-          u16(p) { params[i].min = 0; params[i].max = 65535; return data.readUInt16LE(p) },
-          i16(p) { params[i].min = -32768; params[i].max = 32767; return data.readInt16LE(p) },
-          u32(p) { params[i].min = 0; params[i].max = 4294967295; return data.readUInt32LE(p) },
-          i32(p) { params[i].min = -2147483648; params[i].max = 2147483647; return data.readInt32LE(p) },
+          u8(p) { param.bitCount = 8; params[i].min = 0; params[i].max = 255; return data.readUInt8(p) },
+          i8(p) { param.bitCount = 8; params[i].min = -128; params[i].max = 127; return data.readInt8(p) },
+          u16(p) { param.bitCount = 16; params[i].min = 0; params[i].max = 65535; return data.readUInt16LE(p) },
+          i16(p) { param.bitCount = 16; params[i].min = -32768; params[i].max = 32767; return data.readInt16LE(p) },
+          u32(p) { param.bitCount = 32; params[i].min = 0; params[i].max = 4294967295; return data.readUInt32LE(p) },
+          i32(p) { param.bitCount = 32; params[i].min = -2147483648; params[i].max = 2147483647; return data.readInt32LE(p) },
           HEX(p) { return 'see hex view...' },
           ABILITY(p) { return this.u8(p) },
         })[param.type](parseInt(param.start))
@@ -92,8 +94,6 @@
         ).match(/.{1,8}/g)
         .reverse();
 
-      console.log(clearMask);
-      console.log(toWrite);
       for (let i = 0; i < clearMask.length; i++) {
         data[p.start.byte + i] &= parseInt(clearMask[i], 2);
         data[p.start.byte + i] |= parseInt(toWrite[i], 2);
@@ -111,6 +111,18 @@
         ABILITY(v, p) { return this.u8(v, p) },
       })[p.type](p.value, parseInt(p.start))
     }
+  }
+
+  let thing = false;
+  function checkBoundsAndSet(evt, param) {
+    if (param.min <= evt.target.value && evt.target.value <= param.max) {
+      writeAdjustment(evt.target.value, param);
+    } else {
+      evt.target.value = (evt.target.value > 0) ? param.max : param.min;
+      writeAdjustment(evt.target.value, param);
+    }
+
+    thing = !thing;
   }
 </script>
 
@@ -133,6 +145,10 @@
 <h1 class="header">
   Overview
 </h1>
+<div class="ui checkbox">
+  <input type="checkbox" on:change={(evt) => displayBin = evt.target.checked}>
+  <label>display binary?</label>
+</div>
 <div class="ui middle aligned selection list">
   {#each params as param}
     <div class="item">
@@ -171,13 +187,29 @@
           (edit as hex)
         {:else if param.type === 'bits'}
           <div class="ui transparent input">
-            <input type="number" min={param.min} max={param.max} value={param.value} on:change={(evt) => (param.min <= evt.target.value && evt.target.value <= param.max) ? writeAdjustment(evt.target.value, param) : evt.target.value = (evt.target.value > 0) ? param.max : param.min} placeholder="value..."/>
+            <input
+              type="number"
+              min={param.min}
+              max={param.max}
+              value={param.value}
+              on:change={(evt) => checkBoundsAndSet(evt, param)}
+              placeholder="value..."/>
           </div>
-          (bin: {(param.value !== undefined) ? param.value.toString(2).padStart(param.bitCount, '0') : ''})
+          ({(param.value !== undefined) ? param.value.toString(2).padStart(param.bitCount, '0') : ''})
         {:else}
           <div class="ui transparent input">
-            <input type="number" min={param.min} max={param.max} value={param.value} on:change={(evt) => (param.min <= evt.target.value && evt.target.value <= param.max) ? writeAdjustment(evt.target.value, param) : evt.target.value = (evt.target.value > 0) ? param.max : param.min} placeholder="value..."/>
+            <input type="number"
+              min={param.min}
+              max={param.max}
+              value={param.value}
+              on:change={(evt) => checkBoundsAndSet(evt, param)}
+              placeholder="value..."/>
           </div>
+          <!-- forces update when value is changed -->
+          <span style="display: none">{thing}</span>
+          {#if displayBin}
+            ({(param.value !== undefined) ? (param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0') : ''})
+          {/if}
         {/if}
         </div>
         <div class="description">{param.description}</div>

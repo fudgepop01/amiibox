@@ -33,9 +33,10 @@ class CardIO {
 
   init() {
     return new Promise((resolve) => {
+      setTimeout(() => {resolve(false)}, 1000);
       this.nfc.on('reader', (reader) => {
         this.reader = reader;
-        resolve();
+        resolve(true);
       });
     })
   }

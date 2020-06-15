@@ -36,6 +36,19 @@
 		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
 	}
 
+	async function setRegionsToDefualt() {
+		const confirmation = await remote.dialog.showMessageBox({
+			type: "question",
+			buttons: ["cancel", "ok"],
+			title: 'confirmation',
+			message: "are you sure you wish to reset the regions to default?"
+		})[0];
+		if (confirmation === 0) return;
+
+		config.regions = '__DEFAULT__';
+		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
+	}
+
 	let config;
 	let needsKeys;
 	onMount(async () => {
@@ -91,6 +104,7 @@
 			<div class={`${needsKeys ? 'massive' : 'small'} ui fluid buttons`}>
       	<button class={`enter-btn ui ${needsKeys ? '' : 'basic'} red button`} on:click={() => setKeys()}>select keys</button>
       	<button class={"enter-btn ui basic red button"} on:click={() => setRegions()}>select region config</button>
+      	<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToDefualt()}>RESET region config</button>
 			</div>
       <button class={`${needsKeys ? 'mini ' : 'huge'} enter-btn fluid ui black basic button`} on:click={() => dispatch('navigate', 'main')}>Begin</button>
     </div>
