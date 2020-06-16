@@ -195,7 +195,7 @@
               on:change={(evt) => checkBoundsAndSet(evt, param)}
               placeholder="value..."/>
           </div>
-          ({(param.value !== undefined) ? param.value.toString(2).padStart(param.bitCount, '0') : ''})
+          ({(param.value !== undefined) ? (param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0') : ''})
         {:else}
           <div class="ui transparent input">
             <input type="number"

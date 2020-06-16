@@ -66,12 +66,6 @@ misc
 whether or not the amiibo will give you gifts upon scanning
 it in. Can be used to farm stuff.
 
-personality: HEX
-0x168
-0x1A2
-behavior
-determines how the amiibo behaves in-battle. Still being researched
-
 aggression: u16
 0x168
 0x16A
@@ -132,6 +126,12 @@ jab: u8
 0x189
 moveset
 the chance of the amiibo running the jab routine
+
+dash attack: u8
+0x175
+0x176
+moveset
+the chance of the amiibo running the dash attack routine
 
 forward tilt: u8
 0x189
@@ -280,15 +280,15 @@ custom moves: u8
 misc
 the custom move the amiibo has (stored as binary)
 
-hat: u8
-0x100
-0x101
+hat: u16
+0xf0
+0xf2
 misc
 the hat the amiibo has
 
 outfit: u8
-0x102
-0x103
+0xf2
+0xf3
 misc
 the outfit the amiibo has
 
