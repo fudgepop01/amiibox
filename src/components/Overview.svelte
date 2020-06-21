@@ -114,16 +114,78 @@
   }
 
   let thing = false;
-  function checkBoundsAndSet(evt, param) {
-    if (param.min <= evt.target.value && evt.target.value <= param.max) {
-      writeAdjustment(evt.target.value, param);
+  function checkBoundsAndSet(evt, param, isBin) {
+    let value;
+
+    if (isBin) {
+      value = parseInt(evt.target.value, 2);
+      if (param.min !== 0 && evt.target.value.startsWith('1')) {
+        value = param.min + parseInt(evt.target.value.substring(1), 2);
+      }
     } else {
-      evt.target.value = (evt.target.value > 0) ? param.max : param.min;
-      writeAdjustment(evt.target.value, param);
+      value = evt.target.value;
     }
 
+    if (param.min <= value && value <= param.max) {
+      writeAdjustment(value, param);
+    } else {
+      const v = (value > 0) ? param.max : param.min;
+      writeAdjustment(v, param);
+    }
     thing = !thing;
   }
+
+  function binEdit(evt, param) {
+    let selStart;
+    let selEnd;
+    switch (evt.key) {
+      case 'ArrowLeft':
+      case 'ArrowRight':
+        return;
+      case 'i':
+        evt.preventDefault();
+        selStart = evt.target.selectionStart;
+        selEnd = evt.target.selectionEnd;
+        let out = evt.target.value.substring(0, selStart);
+        for (const ch of evt.target.value.substring(selStart, selEnd)) {
+          out += (ch === '0') ? '1' : '0';
+        }
+        out += evt.target.value.substring(selEnd);
+        evt.target.value = out;
+        evt.target.setSelectionRange(selStart, selEnd);
+
+        checkBoundsAndSet(evt, param, true);
+        break;
+      case 'Backspace':
+        evt.preventDefault();
+        selStart = evt.target.selectionStart
+        evt.target.value =
+          evt.target.value.substring(0, selStart - 1)
+          + '0'
+          + evt.target.value.substring(selStart);
+
+        evt.target.setSelectionRange(selStart - 1, selStart - 1);
+
+        checkBoundsAndSet(evt, param, true);
+        break;
+      case '1':
+      case '0':
+        evt.preventDefault();
+        selStart = evt.target.selectionStart
+        evt.target.value =
+          evt.target.value.substring(0, selStart)
+          + evt.key
+          + evt.target.value.substring(selStart + 1);
+
+        evt.target.setSelectionRange(selStart + 1, selStart + 1);
+
+        checkBoundsAndSet(evt, param, true)
+        break;
+      default:
+        evt.preventDefault();
+    }
+  }
+
 </script>
 
 <style>
@@ -208,7 +270,15 @@
           <!-- forces update when value is changed -->
           <span style="display: none">{thing}</span>
           {#if displayBin}
-            ({(param.value !== undefined) ? (param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0') : ''})
+            <br/>
+            <div class="ui transparent left icon input">
+              <input
+                value={(param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0')}
+                on:keydown={(evt) => binEdit(evt, param)}
+                style="font-family: consolas;"
+                placeholder="value..."/>
+              <i class="angle double right icon"></i>
+            </div>
           {/if}
         {/if}
         </div>

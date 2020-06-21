@@ -72,11 +72,59 @@ aggression: u16
 behavior
 how aggressive the amiibo is (a value of 0 will prevent all attacks)
 
+attack bit 1: bits
+0x168b0
+0x168b1
+behavior
+will occasionally make the AI attack - it is in an odd position compared to the rest
+
+attack bit 2: bits
+0x169b0
+0x169b1
+behavior
+makes the AI attack on occasion
+
+double-jump bit: bits
+0x169b1
+0x169b2
+behavior
+makes the AI frequently double-jump
+
+attack bits 3: bits
+0x169b2
+0x169b8
+behavior
+controlls how often the AI attacks
+
 edgeguard: u16
 0x16A
 0x16C
 behavior
 the chance of the amiibo jumping after the opponent to edgeguard
+
+opposite-groundedness: bits
+0x16Ab0
+0x16Ab4
+behavior
+if the AI usually often jumps, increase this to lower that chance, and vice versa
+
+edg b4-8: bits
+0x16Ab4
+0x16Ab8
+behavior
+TEMPORARY REGION FOR EXPERIMENTATION
+
+edg b8-12: bits
+0x16Bb0
+0x16Bb4
+behavior
+TEMPORARY REGION FOR EXPERIMENTATION
+
+edg b12-16: bits
+0x16Bb4
+0x16Bb8
+behavior
+TEMPORARY REGION FOR EXPERIMENTATION
 
 anticipation: u16
 0x16C
@@ -102,6 +150,12 @@ grab: u8
 0x172
 moveset
 the chance of the amiibo running the grab routine
+
+parry skill: u8
+0x178
+0x179
+behavior
+the chance of the amiibo going for a parry
 
 smashball collector: u16
 0x17b
@@ -156,6 +210,12 @@ down tilt: u8
 0x18d
 moveset
 the chance of the amiibo running the dTilt routine
+
+hard punish fsmash: bits
+0x18c b3
+0x18c b4
+moveset
+tells the amiibo to punish shieldbreak / rest with fsmash
 
 forward smash: u8
 0x18d
@@ -273,6 +333,34 @@ costume: u8
 0x1A4
 misc
 the skin the amiibo has
+
+unknown 1: u8
+0x1A4
+0x1A5
+behavior
+has something to do with attack patterns.
+usually 0x08 or 0x09
+
+unknown 2a: u8
+0x1A5
+0x1A6
+behavior
+has something to do with attack patterns.
+usually 0xFC, 0xFD, or 0x00
+
+unknown 2b: u8
+0x1A6
+0x1A7
+behavior
+has something to do with attack patterns.
+usually 0xFC, 0xFD, or 0x00
+
+unknown 2c: u8
+0x1A7
+0x1A8
+behavior
+has something to do with attack patterns.
+usually 0xFC, 0xFD, or 0x00
 
 custom moves: u8
 0xff

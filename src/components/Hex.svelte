@@ -5,6 +5,7 @@
   export let data;
   export let params;
   let editor;
+  let lastChange;
   let dispatch = createEventDispatcher();
 
   onMount(async () => {
@@ -30,16 +31,16 @@
           description: param.description
         })
       }
+
+      dispatch('updateEditorFn', (data) => {
+        editor.acceptFile(new File([new Blob([data])], 'amiibodata'));
+      });
     }, 100);
   })
 
   async function broadcastChange() {
-    dispatch('dataChanged', await editor.saveFile());
-  }
-
-  let binView = false;
-  const toggleBinView = () => {
-
+    lastChange = await editor.saveFile();
+    dispatch('dataChanged', lastChange);
   }
 
 </script>

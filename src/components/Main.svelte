@@ -83,12 +83,14 @@
     return await card.init();
   }
 
+  let updateEditorFn = (data) => {};
   async function loadFile(method) {
     let paths = await remote.dialog.showOpenDialog({
       message: 'open amiibo bin'
     });
     if (method === 'encrypt') data = decrypt(await readFile(paths[0]), keys);
     else data = await readFile(paths[0]);
+    updateEditorFn(data);
   }
 
   async function saveFile(method) {
@@ -120,6 +122,7 @@
           data = await card.read();
           data = decrypt(data, keys);
           data[0xE3] |= 0b00000001;
+          updateEditorFn(data);
         }
       })
       .modal('show');
@@ -150,6 +153,8 @@
 
           targetCard = decrypt(targetCard, keys);
           data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
+          // uncomment this to be able to set the nickname:
+          // targetCard.write(newStr, 0x39, newStr.length * 2, 'utf16le');
 
           sign(targetCard);
           let encrypted = encrypt(targetCard, keys);
@@ -258,6 +263,7 @@
   <div class="ui placeholder">
     <div class="square image"></div>
   </div>
+
   <div class="io">
     <div class="ui two mini buttons">
       <button class="ui labeled icon button" on:click={() => loadFile('encrypt')}>
@@ -312,6 +318,11 @@
   {#if page === 'overview'}
     <Overview {data} {params} {abilities} on:load={setTimeout(() => window['$']('.ui.dropdown').dropdown(), 100)}/>
   {:else if page === 'hex'}
-    <Hex on:dataChanged={(evt) => data = Buffer.from(evt.detail)} {data} {params}></Hex>
+    <Hex
+      on:dataChanged={(evt) => data = Buffer.from(evt.detail)}
+      on:updateEditorFn={(evt) => updateEditorFn = evt.detail}
+      {data}
+      {params}>
+    </Hex>
   {/if}
 </div>
