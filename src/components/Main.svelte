@@ -99,6 +99,12 @@
     });
 
     data[0xE3] |= 0b00000001;
+
+    // applies box nickname
+    const newNick = data.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
+    data.write(newNick, 0x39, newNick.length * 2, 'utf16le');
+    data.write('25A1', 0x4A, 2, 'hex');
+
     let encData = encrypt(data, keys);
     pw = calcKeyARaw(Buffer.from([...encData.slice(0, 3), ...encData.slice(4, 8)]));
 
@@ -153,8 +159,11 @@
 
           targetCard = decrypt(targetCard, keys);
           data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
-          // uncomment this to be able to set the nickname:
-          // targetCard.write(newStr, 0x39, newStr.length * 2, 'utf16le');
+
+          // applies box nickname
+          const newNick = targetCard.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
+          targetCard.write(newNick, 0x39, newNick.length * 2, 'utf16le');
+          targetCard.write('25A1', 0x4A, 2, 'hex');
 
           sign(targetCard);
           let encrypted = encrypt(targetCard, keys);

@@ -102,30 +102,6 @@ edgeguard: u16
 behavior
 the chance of the amiibo jumping after the opponent to edgeguard
 
-opposite-groundedness: bits
-0x16Ab0
-0x16Ab4
-behavior
-if the AI usually often jumps, increase this to lower that chance, and vice versa
-
-edg b4-8: bits
-0x16Ab4
-0x16Ab8
-behavior
-TEMPORARY REGION FOR EXPERIMENTATION
-
-edg b8-12: bits
-0x16Bb0
-0x16Bb4
-behavior
-TEMPORARY REGION FOR EXPERIMENTATION
-
-edg b12-16: bits
-0x16Bb4
-0x16Bb8
-behavior
-TEMPORARY REGION FOR EXPERIMENTATION
-
 anticipation: u16
 0x16C
 0x16E
@@ -328,60 +304,335 @@ moveset
 the chance of the amiibo running the down special routine while
 in the air
 
-costume: u8
-0x1A3
-0x1A4
+costume: ENUM
+0x1A3b4
+0x1A3b8
 misc
+{
+  color 1: 0b0000
+  color 2: 0b0001
+  color 3: 0b0010
+  color 4: 0b0011
+  color 5: 0b0100
+  color 6: 0b0101
+  color 7: 0b0110
+  color 8: 0b0111
+  color 9 (mii only): 0b1000
+  color 10 (mii only): 0b1001
+  color 11 (mii only): 0b1010
+  color 12 (mii only): 0b1011
+}
 the skin the amiibo has
 
-unknown 1: u8
-0x1A4
-0x1A5
-behavior
-has something to do with attack patterns.
-usually 0x08 or 0x09
+mii fighter neutral special: ENUM
+0xEFb6
+0xEFb8
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of neutral special the mii uses
 
-unknown 2a: u8
-0x1A5
-0x1A6
-behavior
-has something to do with attack patterns.
-usually 0xFC, 0xFD, or 0x00
+mii fighter side special: ENUM
+0xEFb4
+0xEFb6
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of side special the mii uses
 
-unknown 2b: u8
-0x1A6
-0x1A7
-behavior
-has something to do with attack patterns.
-usually 0xFC, 0xFD, or 0x00
+mii fighter up special: ENUM
+0xEFb2
+0xEFb4
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of up special the mii uses
 
-unknown 2c: u8
-0x1A7
-0x1A8
-behavior
-has something to do with attack patterns.
-usually 0xFC, 0xFD, or 0x00
+mii fighter down special: ENUM
+0xEFb0
+0xEFb2
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of down special the mii uses
 
-custom moves: u8
-0xff
-0x100
+hat: ENUM
+0xF0b0
+0xF1b8
 misc
-the custom move the amiibo has (stored as binary)
-
-hat: u16
-0xf0
-0xf2
-misc
+{
+  none: -1
+  mushroom2: 0
+  hockey: 1
+  demon: 2
+  crown: 3
+  prince: 4
+  lady: 5
+  sheik: 6
+  ninja: 7
+  silkhat: 8
+  mushroom1: 9
+  princesszelda: 10
+  daisy: 11
+  togezo: 12
+  barbara: 13
+  peach: 14
+  princess: 15
+  heyho: 16
+  maid: 17
+  wizard: 18
+  mario: 19
+  meta: 20
+  luigi: 21
+  wario: 22
+  waluigi: 23
+  wanwan: 24
+  pirate: 25
+  bandit: 26
+  dragon: 27
+  link: 28
+  majorasmask: 29
+  dunban: 30
+  cathead m: 31
+  cathead f: 32
+  monkeyhead m: 33
+  monkeyhead f: 34
+  isabelle: 35
+  splatoonhair m: 36
+  splatoonhair f: 37
+  splatoon: 38
+  bearhead m: 39
+  bearhead f: 40
+  kingkrool: 41
+  flyingman: 42
+  chrom: 43
+  blackknight: 44
+  samus: 45
+  kkslide: 46
+  toad: 47
+  nature: 48
+  starfox: 49
+  captainfalcon: 50
+  metal m: 51
+  metal f: 52
+  takamaru: 53
+  ashley: 54
+  doseisan: 55
+  splatoon2 m: 56
+  splatoon2 f: 57
+  linkbow: 58
+  skullkid: 59
+  beit: 60
+  mariomaker: 61
+  cappy: 62
+  yoshiwool: 63
+  chibirobo: 64
+  vince: 65
+  dixiekong: 66
+  yigaclan: 67
+  saki: 68
+  customrobo: 69
+  nia: 70
+  springman m: 71
+  ribbongirl f: 72
+  marx: 73
+  robin: 74
+  lip: 75
+  specialforces: 76
+  astronaut: 77
+  labo: 78
+  rex: 79
+  (dlc) p3hero: 80
+  (dlc) p4hero: 81
+  (dlc) p4kuma: 82
+  (dlc) p5mona: 83
+  (dlc) tails: 84
+  (dlc) knuckles: 85
+  (dlc) veronica: 86
+  (dlc) roto: 87
+  (dlc) monk m: 88
+  (dlc) monk f: 89
+  (dlc) slime: 90
+  (dlc) rocket: 91
+  (dlc) goemon: 92
+  (dlc) sans: 93
+  (dlc) bruce: 94
+  (dlc) zero: 95
+  (dlc) ryo: 96
+  (dlc) nakoruru: 97
+  (dlc) iori: 98
+  (dlc) akira: 99
+  (dlc) jacky: 100
+  (dlc) cuphead: 101
+  (dlc) altair: 102
+  (dlc) rabbids: 103
+  (dlc) x: 104
+  (dlc) exe: 105
+  (dlc) linkancient: 106
+}
 the hat the amiibo has
 
-outfit: u8
-0xf2
-0xf3
+outfit: ENUM
+0xF2b0
+0xF2b8
 misc
+{
+  (all) none: -1
+  (b) normalfighter m: 0
+  (b) normalfighter f: 1
+  (b) martialarts m: 2
+  (b) martialarts f: 3
+  (b) chinese m: 4
+  (b) chinese f: 5
+  (b) machine m: 6
+  (b) machine f: 7
+  (b) protector m: 8
+  (b) protector f: 9
+  (b) vampire m: 10
+  (b) vampire f: 11
+  (b) biker m: 12
+  (b) biker f: 13
+  (b) sbtshirt m: 14
+  (b) sbtshirt f: 15
+  (b) catsuit m: 16
+  (b) catsuit f: 17
+  (b) kingkrool m: 18
+  (b) flyingman m: 19
+  (b) businessman m: 20
+  (b) businessman f: 21
+  (b) toad m: 22
+  (b) toad f: 23
+  (b) cfalcon m: 24
+  (b) metal m: 25
+  (b) metal f: 26
+  (b) skullkid m: 27
+  (b) mariomaker m: 28
+  (b) yoshiwool m: 29
+  (b) springman m: 30
+  (b) ribbongirl f: 31
+  (b) nia f: 32
+  (b) maid f: 33
+  (s) maid f: 34
+  (g) maid f: 35
+  (b) deacon m: 36
+  (s) deacon m: 37
+  (g) deacon m: 38
+  (b) labo m: 39
+  (s) normalswordman m: 40
+  (s) normalswordman f: 41
+  (s) pirate m: 42
+  (s) pirate f: 43
+  (s) ironSuit m: 44
+  (s) ironSuit f: 45
+  (s) ninja m: 46
+  (s) ninja f: 47
+  (s) sbtshirts m: 48
+  (s) sbtshirts f: 49
+  (s) link m: 50
+  (s) dunban m: 51
+  (s) monkeysuit m: 52
+  (s) monkeysuit f: 53
+  (s) chrom m: 54
+  (s) blackknight m: 55
+  (s) businessman m: 56
+  (s) businessman f: 57
+  (s) nature f: 58
+  (s) takamaru m: 59
+  (s) ashley f: 60
+  (s) linkbow m: 61
+  (s) vince m: 62
+  (s) yigaclan m: 63
+  (s) yigaclan f: 64
+  (s) robin m: 65
+  (s) lip f: 66
+  (g) normalgunner m: 67
+  (g) normalgunner f: 68
+  (g) bandit m: 69
+  (g) bandit f: 70
+  (g) steam m: 71
+  (g) steam f: 72
+  (g) powerd m: 73
+  (g) dragon m: 74
+  (g) dragon f: 75
+  (g) sbtshirtg m: 76
+  (g) sbtshirtg f: 77
+  (g) isabelle f: 78
+  (g) splatoon m: 79
+  (g) splatoon f: 80
+  (g) bearsuit m: 81
+  (g) bearsuit f: 82
+  (g) samus f: 83
+  (g) kkslider m: 84
+  (g) businessman m: 85
+  (g) businessman f: 86
+  (g) starfox m: 87
+  (g) splatoon2 m: 88
+  (g) splatoon2 f: 89
+  (g) chibirobo m: 90
+  (g) customrobo m: 91
+  (g) specialforces m: 92
+  (g) specialforces f: 93
+  (g) astronaut m: 94
+  (g) saki m: 95
+  (s) rex m: 96
+  (s) p3hero m: 97
+  (s) p4hero m: 98
+  (g) tails m: 99
+  (b) knuckles m: 100
+  (b) monk m: 101
+  (b) monk f: 102
+  (s) roto m: 103
+  (s) veronica f: 104
+  (b) rocket m: 105
+  (b) rocket f: 106
+  (s) goemon m: 107
+  (g) sans m: 108
+  (g) bruce m: 109
+  (s) zero m: 110
+  (b) ryo m: 111
+  (s) nakoruru m: 112
+  (s) nakoruru f: 113
+  (b) iori m: 114
+  (b) akira m: 115
+  (b) jacky m: 116
+  (g) cuphead m: 117
+  (s) altair m: 118
+  (g) x m: 119
+  (g) exe m: 120
+  (g) exe f: 121
+  (s) linkancient m: 122
+}
 the outfit the amiibo has
 
-voice: u8
-0x1b4
-0x1b5
+voice: ENUM
+0x1B4b0
+0x1B4b8
 misc
-deals with the voice of the amiibo
+{
+  off: 0
+  type 1: 1
+  type 2: 2
+  type 3: 3
+  type 4: 4
+  type 5: 5
+  type 6: 6
+  type 7: 7
+  type 8: 8
+  type 9: 9
+  type 10: 10
+  type 11: 11
+  type 12: 12
+}
+what voice the amiibo has
