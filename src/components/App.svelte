@@ -3,6 +3,11 @@
 	import Main from './Main.svelte';
 	import TopBar from './Topbar.svelte';
 
+	import { ipcRenderer } from 'electron';
+	import { beforeMount } from 'svelte';
+
+	const FULL_TOGGLE = ipcRenderer.sendSync('FULL_TOGGLE_CHK');
+	console.log(FULL_TOGGLE);
 	let page = 'entrance';
 
 	function navigate(newPage) {
@@ -24,9 +29,9 @@
 
 <main>
 	{#if page === 'entrance'}
-		<Entrance on:navigate={navigate}/>
+		<Entrance {FULL_TOGGLE} on:navigate={navigate}/>
 	{:else if page === 'main'}
-		<Main />
+		<Main {FULL_TOGGLE} />
 	{:else}
 		<div>page not found</div>
 	{/if}

@@ -12,6 +12,8 @@
   import encrypt from '../util/re_encrypt';
   import { calcKeyARaw } from '../util/pwd215';
 
+  export let FULL_TOGGLE;
+
   const readFile = promisify(fs.readFile);
   const writeFile = promisify(fs.writeFile);
 
@@ -23,10 +25,18 @@
   let keys;
   async function load() {
     let config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
+    if (!FULL_TOGGLE) config.regions = '__default__';
     if (config.keys !== 'UNCONFIGURED') keys = config.keys;
 
     abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split(EOL);
-    const splitted = (await readFile(config.regions === '__DEFAULT__' ? `${__dirname}/amiibo/regions.txt` : config.regions, 'utf8')).split(EOL);
+    const splitted = (await readFile(
+      config.regions === '__DEFAULT__'
+        ? `${__dirname}/amiibo/regions.txt`
+        : config.regions === '__default__'
+          ? `${__dirname}/amiibo/regions_LEGAL.txt`
+          : config.regions,
+      'utf8'))
+      .split(EOL);
 
     params.push({});
     let lineNum = 0;
@@ -98,12 +108,14 @@
       message: 'save amiibo bin'
     });
 
-    data[0xE3] |= 0b00000001;
+    if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
 
     // applies box nickname
-    const newNick = data.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
-    data.write(newNick, 0x39, newNick.length * 2, 'utf16le');
-    data.write('25A1', 0x4A, 2, 'hex');
+    if (FULL_TOGGLE) {
+      const newNick = data.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
+      data.write(newNick, 0x39, newNick.length * 2, 'utf16le');
+      data.write('25A1', 0x4A, 2, 'hex');
+    }
 
     let encData = encrypt(data, keys);
     pw = calcKeyARaw(Buffer.from([...encData.slice(0, 3), ...encData.slice(4, 8)]));
@@ -127,7 +139,7 @@
         onApprove: async () => {
           data = await card.read();
           data = decrypt(data, keys);
-          data[0xE3] |= 0b00000001;
+          if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
           updateEditorFn(data);
         }
       })
@@ -153,7 +165,7 @@
       window['$']('.ui.basic.modal.main').modal({
         closable: false,
         onApprove: async () => {
-          data[0xE3] |= 0b00000001;
+          if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
           let targetCard = await card.read();
           pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
 
@@ -161,9 +173,11 @@
           data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
 
           // applies box nickname
-          const newNick = targetCard.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
-          targetCard.write(newNick, 0x39, newNick.length * 2, 'utf16le');
-          targetCard.write('25A1', 0x4A, 2, 'hex');
+          if (FULL_TOGGLE) {
+            const newNick = targetCard.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
+            targetCard.write(newNick, 0x39, newNick.length * 2, 'utf16le');
+            targetCard.write('25A1', 0x4A, 2, 'hex');
+          }
 
           sign(targetCard);
           let encrypted = encrypt(targetCard, keys);
@@ -316,17 +330,19 @@
         Overview
       </div>
     </div>
-    <div class="item" on:click={() => page="hex"}>
-      <div class="header content">
-        Hex
+    {#if FULL_TOGGLE}
+      <div class="item" on:click={() => page="hex"}>
+        <div class="header content">
+          Hex
+        </div>
       </div>
-    </div>
+    {/if}
   </div>
 </div>
 <div class="bottom-right">
   {#if page === 'overview'}
     <Overview {data} {params} {abilities} on:load={setTimeout(() => window['$']('.ui.dropdown').dropdown(), 100)}/>
-  {:else if page === 'hex'}
+  {:else if page === 'hex' && FULL_TOGGLE}
     <Hex
       on:dataChanged={(evt) => data = Buffer.from(evt.detail)}
       on:updateEditorFn={(evt) => updateEditorFn = evt.detail}

@@ -1,9 +1,10 @@
 import * as path from 'path';
 import * as url from 'url';
-import { app, BrowserWindow, protocol } from 'electron';
+import { app, BrowserWindow, protocol, ipcMain, IpcMain } from 'electron';
 
 import { readFile } from 'fs';
 import { join } from 'path';
+import { FULL_TOGGLE } from './util/FULL_TOGGLE';
 const es6Path = join( __dirname, '..', 'static' );
 
 protocol.registerSchemesAsPrivileged([
@@ -37,10 +38,11 @@ function launch() {
 		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true,
+			devTools: FULL_TOGGLE,
 			webSecurity: false
 		}
 	});
-
+	if (!FULL_TOGGLE) win.webContents.on("devtools-opened", () => { win.webContents.closeDevTools(); });
 
 	win.loadURL(
 		url.format({
@@ -49,6 +51,7 @@ function launch() {
 			slashes: true
 		})
 	);
+
 
 
 	const watcher = reloadOnChange(win);
@@ -88,4 +91,8 @@ app.on('activate', function() {
 	if (win === null) {
 		launch();
 	}
+});
+
+ipcMain.on('FULL_TOGGLE_CHK', (evt: any, arg: any) => {
+	evt.returnValue = FULL_TOGGLE;
 });
