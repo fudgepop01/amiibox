@@ -4,7 +4,6 @@
 	import TopBar from './Topbar.svelte';
 
 	import { ipcRenderer } from 'electron';
-	import { beforeMount } from 'svelte';
 
 	const FULL_TOGGLE = ipcRenderer.sendSync('FULL_TOGGLE_CHK');
 	console.log(FULL_TOGGLE);

@@ -1,1 +1,1 @@
-export const FULL_TOGGLE = false;
+export const FULL_TOGGLE = true;
