@@ -21,11 +21,11 @@
 		grid-template-columns: 200px auto;
 		grid-template-rows: 35px auto;
 		height: 100%;
-		padding-top: 25px;
+		margin-top: 25px;
 	}
 </style>
 
-<TopBar />
+<TopBar {FULL_TOGGLE} />
 
 <main>
 	{#if page === 'entrance'}

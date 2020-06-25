@@ -31,9 +31,9 @@ function reloadOnChange(win: BrowserWindow) {
 
 function launch() {
 	win = new BrowserWindow({
-		width: 800,
-		height: 600,
-		minWidth: 600,
+		width: 1000,
+		height: 800,
+		minWidth: 800,
 		backgroundColor: 'white',
 		titleBarStyle: 'hidden',
 		webPreferences: {
@@ -43,6 +43,7 @@ function launch() {
 		}
 	});
 	if (!FULL_TOGGLE) win.webContents.on("devtools-opened", () => { win.webContents.closeDevTools(); });
+	win.setMenuBarVisibility(false);
 
 	win.loadURL(
 		url.format({
@@ -51,8 +52,6 @@ function launch() {
 			slashes: true
 		})
 	);
-
-
 
 	const watcher = reloadOnChange(win);
 

@@ -341,7 +341,7 @@
 </div>
 <div class="bottom-right">
   {#if page === 'overview'}
-    <Overview {data} {params} {abilities} on:load={setTimeout(() => window['$']('.ui.dropdown').dropdown(), 100)}/>
+    <Overview {data} {params} {FULL_TOGGLE} {abilities} on:load={setTimeout(() => window['$']('.ui.dropdown').dropdown(), 100)}/>
   {:else if page === 'hex' && FULL_TOGGLE}
     <Hex
       on:dataChanged={(evt) => data = Buffer.from(evt.detail)}

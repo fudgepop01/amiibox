@@ -101,8 +101,15 @@
 <div class="bottom-left">
   <div class="content">
     <div class="header">
-      <h1 class="title">-\amiibox/-</h1>
-      <h3 class="subtitle">accessible AI experimentation for everyone</h3>
+			{#if FULL_TOGGLE}
+				<h1 class="title">-\amiibox/-</h1>
+				<h3 class="subtitle">accessible AI experimentation for everyone</h3>
+			{:else}
+				<h1 class="title">
+					<i class="icon trophy"></i> -\tournamiibox/- <i class="icon trophy"></i>
+				</h1>
+				<h3 class="subtitle">accessible, tournament-legal amiibo tools for everyone</h3>
+			{/if}
     </div>
     <div class="ui hidden divider" />
     <div class="ui container">
