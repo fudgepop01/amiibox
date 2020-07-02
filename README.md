@@ -1,6 +1,14 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J8Y3EA)
 
-### Where to Download: https://fudgepop01.github.io/amiibox/
+### Amiibox Homepage & Download Link: https://fudgepop01.github.io/amiibox/
+
+### Discuss on Discord: https://discord.gg/C8K2xcU
+
+---
+
+(this is the README for the *full* version of amiibox, which will be releasing sometime later).
+
+---
 
 # Amiibox
 
