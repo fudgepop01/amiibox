@@ -95,3 +95,7 @@ app.on('activate', function() {
 ipcMain.on('FULL_TOGGLE_CHK', (evt: any, arg: any) => {
 	evt.returnValue = FULL_TOGGLE;
 });
+
+ipcMain.on('CHECK_VBOX_INSTALLED', (evt: any, arg: any) => {
+	evt.returnValue = (process.env.VBOX_INSTALL_PATH || process.env.VBOX_MSI_INSTALL_PATH) !== undefined;
+})

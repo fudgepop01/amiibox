@@ -11,6 +11,7 @@
   import sign from '../util/checksum';
   import encrypt from '../util/re_encrypt';
   import { calcKeyARaw } from '../util/pwd215';
+  import { sendAmiiboFileCommand } from '../util/virtualbox';
 
   export let FULL_TOGGLE;
 
@@ -18,6 +19,7 @@
   const writeFile = promisify(fs.writeFile);
 
   let modalState = '';
+  let overviewPage;
 
   let params = [];
   let abilities = [];
@@ -101,6 +103,7 @@
     if (method === 'encrypt') data = decrypt(await readFile(paths[0]), keys);
     else data = await readFile(paths[0]);
     updateEditorFn(data);
+    if (overviewPage) overviewPage.updateDropdowns();
   }
 
   async function saveFile(method) {
@@ -141,6 +144,7 @@
           data = decrypt(data, keys);
           if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
           updateEditorFn(data);
+          if (overviewPage) overviewPage.updateDropdowns();
         }
       })
       .modal('show');
@@ -341,7 +345,7 @@
 </div>
 <div class="bottom-right">
   {#if page === 'overview'}
-    <Overview {data} {params} {FULL_TOGGLE} {abilities} on:load={setTimeout(() => window['$']('.ui.dropdown').dropdown(), 100)}/>
+    <Overview bind:this={overviewPage} {data} {params} {FULL_TOGGLE} {abilities} on:load={setTimeout(() => window['$']('.ui.dropdown').dropdown(), 100)}/>
   {:else if page === 'hex' && FULL_TOGGLE}
     <Hex
       on:dataChanged={(evt) => data = Buffer.from(evt.detail)}

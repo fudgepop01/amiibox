@@ -6,7 +6,7 @@
 	import { ipcRenderer } from 'electron';
 
 	const FULL_TOGGLE = ipcRenderer.sendSync('FULL_TOGGLE_CHK');
-	console.log(FULL_TOGGLE);
+
 	let page = 'entrance';
 
 	function navigate(newPage) {

@@ -48,10 +48,10 @@ freezie equipped
 ramblin evil mushroom equipped
 killing edge equipped
 blank2
-physical attack up
+L 1 physical attack up
 weapon attack up
-fist attack up
-foot attack up
+L 1 fist attack up
+L 1 foot attack up
 aura attack up
 magic attack up
 psi attack up
@@ -82,13 +82,13 @@ shoe1
 landing lag down
 lightweight
 shield damage up
-air attack up1
+L 1 air attack up1
 air defense up
 neutral special up
 side special up
 up special up
 down special up
-strong throw
+L 1 strong throw
 unflinching charged smashes
 toss and meteor
 sword4
@@ -220,7 +220,7 @@ hyper smash attacks2
 neutral attack up2
 tilt attack up2
 special move power up2
-air attack up2
+A 1 air attack up2
 none2
 none3
 none4

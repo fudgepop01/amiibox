@@ -14,7 +14,13 @@
   "build": {
     "files": [
       "rolledup/**/*",
-      "static/**/*",
+      "static/global.css",
+      "static/index.html",
+      "static/PATHS.json",
+      "static/fudgedit/**/*",
+      "static/amiibo/abilities.txt",
+      "static/amiibo/regions.txt",
+      "static/amiibo/regions_LEGAL.txt",
       "semantic/dist/**",
       "package.json"
     ],
@@ -53,6 +59,7 @@
     "jquery": "^3.5.1",
     "maboii": "^1.1.0",
     "nfc-pcsc": "^0.8.0",
+    "rollup-plugin-terser": "^6.1.0",
     "semantic-ui": "^2.4.2"
   }
 }
