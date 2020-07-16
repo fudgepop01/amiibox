@@ -6,7 +6,6 @@
   import Hex from './Hex.svelte';
   import { EOL } from 'os';
 
-  import CardIO from '../util/cardIO';
   import decrypt from '../util/decrypt';
   import sign from '../util/checksum';
   import encrypt from '../util/re_encrypt';
@@ -131,109 +130,6 @@
     else await writeFile(p, decData);
   }
 
-  async function readCard() {
-    let readerCheck = false;
-    if (!card) readerCheck = await initCard();
-    else readerCheck = true;
-    if (readerCheck) {
-      modalState = 'read';
-      window['$']('.ui.basic.modal.main').modal({
-        closable: false,
-        onApprove: async () => {
-          data = await card.read();
-          data = decrypt(data, keys);
-          if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
-          updateEditorFn(data);
-          if (overviewPage) overviewPage.updateDropdowns();
-        }
-      })
-      .modal('show');
-    } else {
-      modalState = 'no compatible card reader found';
-      window['$']('.ui.basic.modal.error').modal({
-        closable: false
-      })
-      .modal('show');
-    }
-
-  }
-
-
-  async function writeCard() {
-    let readerCheck = false;
-    if (!card) readerCheck = await initCard();
-    else readerCheck = true;
-
-    if (readerCheck) {
-      modalState = 'write'
-      window['$']('.ui.basic.modal.main').modal({
-        closable: false,
-        onApprove: async () => {
-          if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
-          let targetCard = await card.read();
-          pw = calcKeyARaw(Buffer.from([...targetCard.slice(0, 3), ...targetCard.slice(4, 8)]));
-
-          targetCard = decrypt(targetCard, keys);
-          data.copy(targetCard, 0xE0, 0xE0, 0x1B5);
-
-          // applies box nickname
-          if (FULL_TOGGLE) {
-            const newNick = targetCard.toString('utf16le', 0x39, 0x4C).replace(/\0/g, ' ');
-            targetCard.write(newNick, 0x39, newNick.length * 2, 'utf16le');
-            targetCard.write('25A1', 0x4A, 2, 'hex');
-          }
-
-          sign(targetCard);
-          let encrypted = encrypt(targetCard, keys);
-          await card.writeData(encrypted, pw)
-        }
-      })
-      .modal('show');
-    } else {
-      modalState = 'no compatible card reader found';
-      window['$']('.ui.basic.modal.error').modal({
-        closable: false
-      })
-      .modal('show');
-    }
-
-  }
-
-  async function cloneCard() {
-    if (!card) await initCard();
-    modalState = 'clone';
-    let paths = await remote.dialog.showOpenDialog({
-      message: 'open amiibo bin'
-    })
-
-    window['$']('.ui.basic.modal.main').modal({
-      closable: false,
-      onApprove: async () => {
-        let source = await readFile(paths[0]);
-        let dest = await card.read();
-        pw = calcKeyARaw(Buffer.from([...dest.slice(0, 3), ...dest.slice(4, 8)]));
-
-        let dec = decrypt(Buffer.from([...source]), keys);
-
-        Buffer.from([...dest.slice(0, 8)]).copy(dec, 0x1D4);
-        Buffer.from(pw.match(/.{2}/g).map(v => parseInt(v, 16))).copy(dec, 0x214);
-        Buffer.from([0x80, 0x80]).copy(dec, 0x218);
-        Buffer.from([0x00, 0x00, 0x00]).copy(dec, 0x208);
-        Buffer.from([...dest.slice(8, 10)]).copy(dec, 0x00);
-        Buffer.from([0x00, 0x00]).copy(dec, 0x02);
-
-        let enc = encrypt(dec, keys);
-
-        enc[10] = 0x0F;
-        enc[11] = 0xE0;
-        enc[0x208] = 0x01;
-        enc[0x20A] = 0x0F;
-        await card.writeFull(enc.slice(0));
-      }
-    })
-    .modal('show');
-  }
-
   load();
 
   let page = 'overview';
@@ -303,16 +199,6 @@
       </button>
     </div>
     <div class="ui two mini buttons">
-      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => readCard()}>
-        <i class="icon download"></i>
-        Scan
-      </button>
-      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => writeCard()}>
-        <i class="icon upload"></i>
-        Apply
-      </button>
-    </div>
-    <div class="ui two mini buttons">
       <button class="ui labeled icon button" on:click={() => loadFile('decrypt')}>
         <i class="icon folder open"></i>
         load_DEC
@@ -322,10 +208,6 @@
         save_DEC
       </button>
     </div>
-    <button class={`${keys ? '' : 'disabled red'} ui labeled icon mini fluid button`} on:click={() => cloneCard()}>
-      <i class="icon plus"></i>
-      Clone
-    </button>
   </div>
 
   <div class="ui middle aligned selection list">
