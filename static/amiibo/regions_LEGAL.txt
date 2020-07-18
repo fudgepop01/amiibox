@@ -40,6 +40,13 @@ level exp: u16
 stats
 controlls the amiibo`s visible level. This only affects buffs.
 
+cpu exp: u16
+0x14E
+0x150
+behavior
+controlls the `skill` of the amiibo`s underlying `Default AI.`
+Mainly affects movement.
+
 attack: i16
 0x150
 0x152
