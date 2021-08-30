@@ -553,11 +553,49 @@ misc
 }
 the skin the amiibo has
 
-custom moves: u8
-0xff
-0x100
-misc
-the custom move the amiibo has (stored as binary)
+mii fighter neutral special: ENUM
+0xEFb6
+0xEFb8
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of neutral special the mii uses
+
+mii fighter side special: ENUM
+0xEFb4
+0xEFb6
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of side special the mii uses
+
+mii fighter up special: ENUM
+0xEFb2
+0xEFb4
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of up special the mii uses
+
+mii fighter down special: ENUM
+0xEFb0
+0xEFb2
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of down special the mii uses
 
 hat: ENUM
 0xF0b0

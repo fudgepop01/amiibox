@@ -5,6 +5,8 @@
 	import { remote } from 'electron';
 	import * as crypt from 'crypto';
 
+	export let FULL_TOGGLE;
+
 	let writeFile = promisify(fs.writeFile);
 	let readFile = promisify(fs.readFile);
 
@@ -17,7 +19,10 @@
 		let sha1 = crypt.createHash('sha1');
 		sha1.update(await readFile(keyPath));
 		if (sha1.digest('hex') !== "bbdbb49a917d14f7a997d327ba40d40c39e606ce") {
-			console.log("incorrect. The keys need to be in one file together.");
+			await remote.BrowserView.showMessageBox({
+				type: "warning",
+				message: "incorrect. The keys need to be in one file together."
+			})
 			needsKeys = true;
 			return;
 		}
@@ -61,7 +66,7 @@
 		}
 
 		config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
-		console.log(config);
+		if (!FULL_TOGGLE) config.regions = '__default__';
 		needsKeys = (config.keys === "UNCONFIGURED");
 	})
 </script>
@@ -96,15 +101,24 @@
 <div class="bottom-left">
   <div class="content">
     <div class="header">
-      <h1 class="title">-\amiibox/-</h1>
-      <h3 class="subtitle">accessible AI experimentation for everyone</h3>
+			{#if FULL_TOGGLE}
+				<h1 class="title">-\amiibox/-</h1>
+				<h3 class="subtitle">accessible AI experimentation for everyone</h3>
+			{:else}
+				<h1 class="title">
+					<i class="icon trophy"></i> -\tournamiibox/- <i class="icon trophy"></i>
+				</h1>
+				<h3 class="subtitle">accessible, tournament-legal amiibo tools for everyone</h3>
+			{/if}
     </div>
     <div class="ui hidden divider" />
     <div class="ui container">
 			<div class={`${needsKeys ? 'massive' : 'small'} ui fluid buttons`}>
       	<button class={`enter-btn ui ${needsKeys ? '' : 'basic'} red button`} on:click={() => setKeys()}>select keys</button>
-      	<button class={"enter-btn ui basic red button"} on:click={() => setRegions()}>select region config</button>
-      	<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToDefualt()}>RESET region config</button>
+      	{#if FULL_TOGGLE}
+					<button class={"enter-btn ui basic red button"} on:click={() => setRegions()}>select region config</button>
+					<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToDefualt()}>RESET region config</button>
+				{/if}
 			</div>
       <button class={`${needsKeys ? 'mini ' : 'huge'} enter-btn fluid ui black basic button`} on:click={() => dispatch('navigate', 'main')}>Begin</button>
     </div>

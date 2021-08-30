@@ -1,256 +1,255 @@
-none
-move speed up
-hyper smash attacks1
-sword1
-jump up
-additional midair jump
-lifesteal
-shield1
-easier dodging
-easier perfect shield
-super armor
-slow super armor
-trade off attack up
-trade off defense up
-trade off speed up
-trade off abillity up
-critical health attack up
-critical health defense up
-critical health stats up
-critical immunity
-autoheal
-poison immunity
-poison damage reduced
-poison heals
-lava floor immunity
-sticky floor immunity
-beam sword equipped
-lips stick equipped
-star rod equipped
-ore club equipped
-home run bat equipped
-ray gun equipped
-super scope equipped
-gust bellows equipped
-drill equipped
-green shell equipped
-poke ball equipped
-blank1
-back shield equipped
-bunny hood equipped
-made of metal
-mouthful of curry
-franklin badge equipped
-hammer equipped
-fairy bottle equipped
-fire flower equipped
-freezie equipped
-ramblin evil mushroom equipped
-killing edge equipped
-blank2
-physical attack up
-weapon attack up
-fist attack up
-foot attack up
-aura attack up
-magic attack up
-psi attack up
-sword2
-fire and explosion attack up
-sword3
-electric attack up
-energy shot attack up
-water and ice attack up
-magic resist up
-psi resist up
-shield2
-fire explosion resist up
-shield3
-shield4
-electric resist up
-energy shot resist up
-shield5
-water freezing resist up
-aura resist up
-zap floor immunity
-slumber immunity
-ice floor immunity
-falling immunity
-bury immunity
-braking ability up
-shoe1
-landing lag down
-lightweight
-shield damage up
-air attack up1
-air defense up
-neutral special up
-side special up
-up special up
-down special up
-strong throw
-unflinching charged smashes
-toss and meteor
-sword4
-critical hit up
-swimmer
-shield durability up
-improved escape
-shield6
-shield2
-x1
-battering items up
-shooting items up
-thrown items up
-k os heal damage
-invincibility after eating
-stats up after eating
-x2
-first strike advantage
-x3
-running start
-x4
-fast final smash meter
-instadrop
-healing shield
-shield
-x5
-floaty jumps
-shoe2
-irreversible controls
-recovery items up
-transformation duration up
-undamaged attack up
-undamaged speed up
-undamaged attack and speed up
-x6
-medkit
-edge grab up
-impact run
-x7
-lava floor resist
-item gravitation
-blank
-chance of double final smash
-double final smash
-hammer12
-hammer22
-metal and giant
-giant
-dash attack up
-armor knight
-shield7
-energy shot attack resistance up
-hammer duration up
-boomerang equipped
-item attack up
-hammer
-sword
-shield82
-shield92
-x8
-perfect shield reflect
-weapon attack and move speed up
-shooting attack up
-charge speed and power up
-x9
-screen flip immunity
-fog immunity
-gravity change immunity
-stamina up
-strong wind resist
-strong wind immunity
-critical health healing
-special move power up1
-x10
-bob omb equipped
-hothead equipped
-super leaf equipped
-super launch star equipped
-beastball equipped
-deaths scythe equipped
-mr saturn equipped
-unira equipped
-rocket belt equipped
-black hole equipped
-x11
-stats up up after eating
-hammer32
-critical health stats up up
-critical hit up up
-great autoheal
-steel diver equipped
-banana gun equipped
-rage blaster equipped
-staff equipped
-fire bar equipped
-screw attack equipped
-bomber equipped
-cucco equipped
-neutral attack up1
-neutral attack up up
-tilt attack up1
-tilt attack up up
-air attack up up
-mighty throw
-special move power up up
-super easy dodging
-shoe3
-landing lag down down
-become heavy
-meteor smashes up
-poisoned smash
-no penalty for continuous dodging
-airborne endurance
-sprinting endurance
-perfect shield recovery
-masterful fall break
-healing item attraction
-attack up when healthy
-defense up when healthy
-endless smash holding
-heal with smash attacks
-activities up
-giant killer
-metal killer
-assist killer
-jam final smash charge
-weapon resist up
-hyper smash attacks2
-neutral attack up2
-tilt attack up2
-special move power up2
-air attack up2
-none2
-none3
-none4
-none5
-item autograb
-none6
-none7
-none8
-none9
-critical healing up up
-none10
-none11
-none12
-none13
-none14
-none15
-none16
-none17
-none18
-none19
-none20
-none21
-none22
-none23
-none24
-none25
-none26
-none27
-none28
-none29
-none30
-none31
-none32
+None
+L 1 Move Speed ↑
+L 1 Hyper Smash Attacks
+3
+L 1 Jump ↑
+L 2 Additional Midair Jump
+Lifesteal
+Defense ↑
+L 1 Easier Dodging
+L 1 Easier Perfect Shield
+L 3 Super Armor
+L 2 Slow Super Armor
+L 1 Trade-Off Attacks ↑
+L 1 Trade-Off Defense ↑
+L 1 Trade-Off Speed ↑
+L 1 Trade-Off Ability ↑
+L 1 Critical-Health Attack ↑
+L 1 Critical-Health Defense ↑
+L 1 Critical-Health Stats ↑
+L 2 Critical Immunity
+L 2 Autoheal
+L 2 Poison Immunity
+L 1 Poison Damage Reduced
+L 3 Poison Heals
+L 2 Lava-Floor Immunity
+L 2 Sticky-Floor Immunity
+L 1 Beam Sword Equipped
+L 1 Lip's Stick Equipped
+L 1 Star Rod Equipped
+L 3 Ore Club Equipped
+Home-Run Bat Equipped
+L 2 Ray Gun Equipped
+L 2 Super Scope Equipped
+Gust Bellows Equipped
+L 1 Drill Equipped
+L 1 Green Shell Equipped
+Poke Ball Equipped
+37
+L 1 Back Shield Equipped
+L 1 Bunny Hood Equipped
+L 1 Made of Metal
+L 2 Mouthful of Curry
+L 2 Franklin Badge Equipped
+Hammer Equipped
+L 1 Fairy Bottle Equipped
+L 1 Fire Flower Equipped
+L 1 Freezie Equipped
+L 1 Ramblin' Evil Mushroom Equipped
+L 1 Killing Edge Equipped
+49
+L 1 Physical Attack ↑
+L 1 Weapon Attack ↑
+L 1 Fist Attack ↑
+L 1 Foot Attack ↑
+L 1 Aura Attack ↑
+L 1 Magic Attack ↑
+L 1 PSI Attack ↑
+57
+L 1 Fire & Explosion Attack ↑
+59
+L 1 Electric Attack ↑
+L 1 Energy-Shot Attack ↑
+L 1 Water & Ice Attack ↑
+L 1 Magic Resist ↑
+L 1 PSI Resist ↑
+65
+L 1 Fire/Explosion Resist ↑
+67
+68
+L 1 Electric Resist ↑
+L 1 Energy-Shot Resist ↑
+71
+L 1 Water/Freezing Resist ↑
+L 1 Aura Resist ↑
+L 2 Zap-Floor Immunity
+L 1 Slumber Immunity
+L 2 Ice-Floor Immunity
+L 1 Falling Immunity
+L 1 Bury Immunity
+L 1 Braking Ability ↑
+Mobility
+L 1 Landing Lag ↓
+L 1 Lightweight
+L 1 Shield Damage ↑
+L 1 Air Attack ↑
+L 1 Air Defense ↑
+L 1 Neutral Special ↑
+L 1 Side Special ↑
+L 1 Up Special ↑
+L 1 Down Special ↑
+L 1 Strong Throw
+L 2 Unflinching Charged Smashes
+L 1 Toss & Meteor
+93
+L 1 Critical Hit ↑
+L 1 Swimmer
+L 1 Shield Durability ↑
+L 1 Improved Escape
+98
+99
+100
+L 1 Battering Items ↑
+L 1 Shooting Items ↑
+L 1 Thrown Items ↑
+L 2 KOs Heal Damage
+L 2 Invincibility after Eating
+L 1 Stats ↑ after Eating
+107
+L 2 First-Strike Advantage
+109
+L 2 Running Start
+111
+L 2 Fast Final Smash Meter
+L 2 Instadrop
+L 2 Healing Shield
+115
+116
+L 1 Floaty Jumps
+118
+L 2 Irreversible Controls
+Recovery Items ↑
+L 1 Transformation Duration ↑
+L 1 Undamaged Attack ↑
+L 1 Undamaged Speed ↑
+L 1 Undamaged Attack & Speed ↑
+125
+126
+Edge Grab ↑
+L 1 Impact Run
+129
+L 1 Lava-Floor Resist
+L 1 Item Gravitation
+132
+L 2 Chance of Double Final Smash
+L 3 Double Final Smash
+135
+136
+Metal and Giant
+L 2 Giant
+L 1 Dash Attack ↑
+L 2 Armor Knight
+141
+L 2 Energy Shot Attack/Resistance ↑
+L 1 Hammer Duration ↑
+L 1 Boomerang Equipped
+Item Attack ↑
+146
+147
+148
+149
+150
+L 1 Perfect-Shield Reflect
+L 2 Weapon Attack & Move Speed ↑
+L 1 Shooting Attack ↑
+Charge Speed & Power ↑
+155
+L 2 Screen-Flip Immunity
+L 2 Fog Immunity
+L 2 Gravity-Change Immunity
+L 1 Stamina ↑
+L 1 Strong-Wind Resist
+L 2 Strong-Wind Immunity
+L 2 Critical-Health Healing
+L 1 Special-Move Power ↑
+164
+L 1 Bob-omb Equipped
+L 2 Hothead Equipped
+L 1 Super Leaf Equipped
+L 1 Super Launch Star Equipped
+L 1 Beastball Equipped
+L 1 Death's Scythe Equipped
+L 1 Mr. Saturn Equipped
+L 1 Unira Equipped
+L 1 Rocket Belt Equipped
+L 2 Black Hole Equipped
+175
+L 2 Stats ↑↑ after Eating
+177
+L 2 Critical-Health Stats ↑↑
+L 2 Critical Hit ↑↑
+L 3 Great Autoheal
+L 2 Steel Diver Equipped
+L 1 Banana Gun Equipped
+L 1 Rage Blaster Equipped
+L 1 Staff Equipped
+L 1 Fire Bar Equipped
+L 2 Screw Attack Equipped
+L 1 Bomber Equipped
+Cucco Equipped
+Neutral Attack ↑
+Neutral Attack ↑↑
+Tilt Attack ↑
+Tilt Attack ↑↑
+Air Attack ↑↑
+Mighty Throw
+Special-Move Power ↑↑
+Super Easy Dodging
+197
+Landing Lag ↓↓
+Become Heavy
+Meteor Smashes ↑
+Poisoned Smash
+No Penalty for Continuous Dodging
+Airborne Endurance
+Sprinting Endurance
+Perfect-Shield Recovery
+Masterful Fall Break
+Healing-Item Attraction
+Attack ↑ When Healthy
+Defense ↑ When Healthy
+Endless Smash Holding
+Heal with Smash Attacks
+Activities ↑
+L 1 Giant Killer
+L 1 Metal Killer
+L 1 Assist Killer
+L 2 Jam FS Charge
+L 2 Weapon Resist ↑
+Hyper Smash Attacks
+Neutral Attack ↑
+Tilt Attack ↑
+Special-Move Power ↑
+Air Attack ↑
+223
+224
+225
+226
+L 1 Item Autograb
+L 2 Team Power Up
+Weight ↑↑
+L 3 Poison Power Up
+L 3 Critical Fast Final Smash Meter ↑↑
+L 3 Critical-Health Healing ↑↑
+L 3 Critical Super Giant
+L 3 Mouthful of Curry ↑↑
+L 2 Final Smash ↑
+L 2 Critical Healing & Metal
+Fist & Foot Attack ↑
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254

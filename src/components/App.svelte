@@ -3,6 +3,10 @@
 	import Main from './Main.svelte';
 	import TopBar from './Topbar.svelte';
 
+	import { ipcRenderer } from 'electron';
+
+	const FULL_TOGGLE = ipcRenderer.sendSync('FULL_TOGGLE_CHK');
+
 	let page = 'entrance';
 
 	function navigate(newPage) {
@@ -16,17 +20,17 @@
 		grid-template-columns: 200px auto;
 		grid-template-rows: 35px auto;
 		height: 100%;
-		padding-top: 25px;
+		margin-top: 25px;
 	}
 </style>
 
-<TopBar />
+<TopBar {FULL_TOGGLE} />
 
 <main>
 	{#if page === 'entrance'}
-		<Entrance on:navigate={navigate}/>
+		<Entrance {FULL_TOGGLE} on:navigate={navigate}/>
 	{:else if page === 'main'}
-		<Main />
+		<Main {FULL_TOGGLE} />
 	{:else}
 		<div>page not found</div>
 	{/if}

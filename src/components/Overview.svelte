@@ -1,5 +1,15 @@
 <script>
-  import { afterUpdate } from 'svelte';
+  import { afterUpdate, tick } from 'svelte';
+
+  export let FULL_TOGGLE;
+  let attackParam;
+  let defenseParam;
+  let abilityParam1;
+  let abilityParam2;
+  let abilityParam3;
+  let atkDefLimit = 5000;
+  // 4200 (3), 4500 (2), 4800 (1), 5000 (0)
+
 
   export let FULL_TOGGLE;
   let attackParam;
@@ -173,6 +183,14 @@
     thing = !thing;
   }
 
+  export async function updateDropdowns() {
+    for (const p of params.filter(p => !!p.dropdown)) {
+      await tick();
+      const d = window['$'](p.dropdown);
+      d.dropdown();
+    }
+  }
+
   function binEdit(evt, param) {
     let selStart;
     let selEnd;
@@ -252,13 +270,13 @@
   </div>
 {/if}
 <div class="ui middle aligned selection list">
-  {#each params as param}
+  {#each params as param, idx}
     <div class="item">
       <div class="content">
         <div class="header">
         {param.name}:
         {#if param.type === 'ABILITY'}
-          <div class="ui scrolling dropdown">
+          <div class="ui scrolling search dropdown" bind:this={params[idx].dropdown}>
             <input type="hidden"
             on:change={(evt) => {writeAdjustment(abilities.map(v => v.toLowerCase()).indexOf(evt.target.value), param)}}
             value={abilities[param.value]}
@@ -272,7 +290,7 @@
             </div>
           </div>
         {:else if param.type === 'ENUM'}
-          <div class="ui scrolling dropdown">
+          <div class="ui scrolling search dropdown" bind:this={params[idx].dropdown}>
             <input type="hidden"
             on:change={(evt) => {writeAdjustment(param.enums[evt.target.value], param)}}
             value={reverseLookup(param.enums, param.value)}

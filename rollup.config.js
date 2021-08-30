@@ -15,6 +15,7 @@ export default {
 	},
 
 	plugins: [
+		// terser(),
 		resolve(),
 		svelte({
 			css(css) {
@@ -26,7 +27,7 @@ export default {
 		typescript({ typescript: require('typescript') }),
 		babel({
       exclude: 'node_modules/**'
-    })
+		}),
 	],
 
 	external: [

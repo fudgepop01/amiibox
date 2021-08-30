@@ -14,7 +14,13 @@
   "build": {
     "files": [
       "rolledup/**/*",
-      "static/**/*",
+      "static/global.css",
+      "static/index.html",
+      "static/PATHS.json",
+      "static/fudgedit/**/*",
+      "static/amiibo/abilities.txt",
+      "static/amiibo/regions.txt",
+      "static/amiibo/regions_LEGAL.txt",
       "semantic/dist/**",
       "package.json"
     ],
@@ -31,7 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@types/node": "^12.6.8",
-    "electron": "^5.0.12",
+    "electron": "^9.4.0",
     "electron-builder": "^20.44.4",
     "rollup": "^1.11.3",
     "rollup-plugin-babel": "^4.3.3",
@@ -53,6 +59,7 @@
     "jquery": "^3.5.1",
     "maboii": "^1.1.0",
     "nfc-pcsc": "^0.8.0",
+    "rollup-plugin-terser": "^6.1.0",
     "semantic-ui": "^2.4.2"
   }
 }

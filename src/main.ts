@@ -1,9 +1,10 @@
 import * as path from 'path';
 import * as url from 'url';
-import { app, BrowserWindow, protocol } from 'electron';
+import { app, BrowserWindow, protocol, ipcMain, IpcMain } from 'electron';
 
 import { readFile } from 'fs';
 import { join } from 'path';
+import { FULL_TOGGLE } from './util/FULL_TOGGLE';
 const es6Path = join( __dirname, '..', 'static' );
 
 protocol.registerSchemesAsPrivileged([
@@ -30,17 +31,19 @@ function reloadOnChange(win: BrowserWindow) {
 
 function launch() {
 	win = new BrowserWindow({
-		width: 800,
-		height: 600,
-		minWidth: 600,
+		width: 1000,
+		height: 800,
+		minWidth: 800,
 		backgroundColor: 'white',
 		titleBarStyle: 'hidden',
 		webPreferences: {
 			nodeIntegration: true,
+			devTools: FULL_TOGGLE,
 			webSecurity: false
 		}
 	});
-
+	if (!FULL_TOGGLE) win.webContents.on("devtools-opened", () => { win.webContents.closeDevTools(); });
+	win.setMenuBarVisibility(false);
 
 	win.loadURL(
 		url.format({
@@ -49,7 +52,6 @@ function launch() {
 			slashes: true
 		})
 	);
-
 
 	const watcher = reloadOnChange(win);
 
@@ -89,3 +91,11 @@ app.on('activate', function() {
 		launch();
 	}
 });
+
+ipcMain.on('FULL_TOGGLE_CHK', (evt: any, arg: any) => {
+	evt.returnValue = FULL_TOGGLE;
+});
+
+ipcMain.on('CHECK_VBOX_INSTALLED', (evt: any, arg: any) => {
+	evt.returnValue = (process.env.VBOX_INSTALL_PATH || process.env.VBOX_MSI_INSTALL_PATH) !== undefined;
+})
