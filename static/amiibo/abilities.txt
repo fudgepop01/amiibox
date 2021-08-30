@@ -1,235 +1,236 @@
-none1
-moveSpeedUp
-hyperSmashAttacks1
+none
+move speed up
+hyper smash attacks1
 sword1
-jumpUp
-additionalMidairJump
+jump up
+additional midair jump
 lifesteal
 shield1
-easierDodging
-easierPerfectShield
-superArmor
-slowSuperArmor
-tradeOffAttackUp
-tradeOffDefenseUp
-tradeOffSpeedUp
-tradeOffAbillityUp
-criticalHealthAttackUp
-criticalHealthDefenseUp
-criticalHealthStatsUp
-criticalImmunity
+easier dodging
+easier perfect shield
+super armor
+slow super armor
+trade off attack up
+trade off defense up
+trade off speed up
+trade off abillity up
+critical health attack up
+critical health defense up
+critical health stats up
+critical immunity
 autoheal
-poisonImmunity
-poisonDamageReduced
-poisonHeals
-lavaFloorImmunity
-stickyFloorImmunity
-beamSwordEquipped
-lipsStickEquipped
-starRodEquipped
-oreClubEquipped
-homeRunBatEquipped
-rayGunEquipped
-superScopeEquipped
-gustBellowsEquipped
-drillEquipped
-greenShellEquipped
-pokeBallEquipped
+poison immunity
+poison damage reduced
+poison heals
+lava floor immunity
+sticky floor immunity
+beam sword equipped
+lips stick equipped
+star rod equipped
+ore club equipped
+home run bat equipped
+ray gun equipped
+super scope equipped
+gust bellows equipped
+drill equipped
+green shell equipped
+poke ball equipped
 blank1
-backShieldEquipped
-bunnyHoodEquipped
-madeOfMetal
-mouthfulOfCurry
-franklinBadgeEquipped
-hammerEquipped
-fairyBottleEquipped
-fireFlowerEquipped
-freezieEquipped
-ramblinEvilMushroomEquipped
-killingEdgeEquipped
+back shield equipped
+bunny hood equipped
+made of metal
+mouthful of curry
+franklin badge equipped
+hammer equipped
+fairy bottle equipped
+fire flower equipped
+freezie equipped
+ramblin evil mushroom equipped
+killing edge equipped
 blank2
-physicalAttackUp
-weaponAttackUp
-fistAttackUp
-footAttackUp
-auraAttackUp
-magicAttackUp
-psiAttackUp
+physical attack up
+weapon attack up
+fist attack up
+foot attack up
+aura attack up
+magic attack up
+psi attack up
 sword2
-fireAndExplosionAttackUp
+fire and explosion attack up
 sword3
-electricAttackUp
-energyShotAttackUp
-waterAndIceAttackUp
-magicResistUp
-psiResistUp
+electric attack up
+energy shot attack up
+water and ice attack up
+magic resist up
+psi resist up
 shield2
-fireExplosionResistUp
+fire explosion resist up
 shield3
 shield4
-electricResistUp
-energyShotResistUp
+electric resist up
+energy shot resist up
 shield5
-waterFreezingResistUp
-auraResistUp
-zapFloorImmunity
-slumberImmunity
-iceFloorImmunity
-fallingImmunity
-buryImmunity
-brakingAbilityUp
+water freezing resist up
+aura resist up
+zap floor immunity
+slumber immunity
+ice floor immunity
+falling immunity
+bury immunity
+braking ability up
 shoe1
-landingLagDown
+landing lag down
 lightweight
-shieldDamageUp
-airAttackUp1
-airDefenseUp
-neutralSpecialUp
-sideSpecialUp
-upSpecialUp
-downSpecialUp
-strongThrow
-unflinchingChargedSmashes
-tossAndMeteor
+shield damage up
+air attack up1
+air defense up
+neutral special up
+side special up
+up special up
+down special up
+strong throw
+unflinching charged smashes
+toss and meteor
 sword4
-criticalHitUp
+critical hit up
 swimmer
-shieldDurabilityUp
-improvedEscape
+shield durability up
+improved escape
 shield6
-shield_2
+shield2
 x1
-batteringItemsUp
-shootingItemsUp
-thrownItemsUp
-KOsHealDamage
-invincibilityAfterEating
-statsUpAfterEating
+battering items up
+shooting items up
+thrown items up
+k os heal damage
+invincibility after eating
+stats up after eating
 x2
-firstStrikeAdvantage
+first strike advantage
 x3
-runningStart
+running start
 x4
-fastFinalSmashMeter
+fast final smash meter
 instadrop
-healingShield
+healing shield
 shield
 x5
-floatyJumps
+floaty jumps
 shoe2
-irreversibleControls
-recoveryItemsUp
-transformationDurationUp
-undamagedAttackUp
-undamagedSpeedUp
-undamagedAttackAndSpeedUp
+irreversible controls
+recovery items up
+transformation duration up
+undamaged attack up
+undamaged speed up
+undamaged attack and speed up
 x6
 medkit
-edgeGrabUp
-impactRun
+edge grab up
+impact run
 x7
-lavaFloorResist
-itemGravitation
+lava floor resist
+item gravitation
 blank
-chanceOfDoubleFinalSmash
-doubleFinalSmash
-hammer1_2
-hammer2_2
-metalAndGiant
+chance of double final smash
+double final smash
+hammer12
+hammer22
+metal and giant
 giant
-dashAttackUp
-armorKnight
+dash attack up
+armor knight
 shield7
-energyShotAttackResistanceUp
-hammerDurationUp
-boomerangEquipped
-itemAttackUp
+energy shot attack resistance up
+hammer duration up
+boomerang equipped
+item attack up
 hammer
 sword
-shield8_2
-shield9_2
+shield82
+shield92
 x8
-perfectShieldReflect
-weaponAttackAndMoveSpeedUp
-shootingAttackUp
-chargeSpeedAndPowerUp
+perfect shield reflect
+weapon attack and move speed up
+shooting attack up
+charge speed and power up
 x9
-screenFlipImmunity
-fogImmunity
-gravityChangeImmunity
-staminaUp
-strongWindResist
-strongWindImmunity
-criticalHealthHealing
-specialMovePowerUp1
+screen flip immunity
+fog immunity
+gravity change immunity
+stamina up
+strong wind resist
+strong wind immunity
+critical health healing
+special move power up1
 x10
-bobOmbEquipped
-hotheadEquipped
-superLeafEquipped
-superLaunchStarEquipped
-beastballEquipped
-deathsScytheEquipped
-mrSaturnEquipped
-uniraEquipped
-rocketBeltEquipped
-blackHoleEquipped
+bob omb equipped
+hothead equipped
+super leaf equipped
+super launch star equipped
+beastball equipped
+deaths scythe equipped
+mr saturn equipped
+unira equipped
+rocket belt equipped
+black hole equipped
 x11
-statsUpUpAfterEating
-hammer3_2
-criticalHealthStatsUpUp
-criticalHitUpUp
-greatAutoheal
-steelDiverEquipped
-bananaGunEquipped
-rageBlasterEquipped
-staffEquipped
-fireBarEquipped
-screwAttackEquipped
-bomberEquipped
-cuccoEquipped
-neutralAttackUp1
-neutralAttackUpUp
-tiltAttackUp1
-tiltAttackUpUp
-airAttackUpUp
-mightyThrow
-specialMovePowerUpUp
-superEasyDodging
+stats up up after eating
+hammer32
+critical health stats up up
+critical hit up up
+great autoheal
+steel diver equipped
+banana gun equipped
+rage blaster equipped
+staff equipped
+fire bar equipped
+screw attack equipped
+bomber equipped
+cucco equipped
+neutral attack up1
+neutral attack up up
+tilt attack up1
+tilt attack up up
+air attack up up
+mighty throw
+special move power up up
+super easy dodging
 shoe3
-landingLagDownDown
-becomeHeavy
-meteorSmashesUp
-poisonedSmash
-noPenaltyForContinuousDodging
-airborneEndurance
-sprintingEndurance
-perfectShieldRecovery
-masterfulFallBreak
-healingItemAttraction
-attackUpWhenHealthy
-defenseUpWhenHealthy
-endlessSmashHolding
-healWithSmashAttacks
-activitiesUp
-giantKiller
-metalKiller
-assistKiller
-jamFinalSmashCharge
-weaponResistUp
-hyperSmashAttacks2
-neutralAttackUp2
-tiltAttackUp2
-specialMovePowerUp2
-airAttackUp2
+landing lag down down
+become heavy
+meteor smashes up
+poisoned smash
+no penalty for continuous dodging
+airborne endurance
+sprinting endurance
+perfect shield recovery
+masterful fall break
+healing item attraction
+attack up when healthy
+defense up when healthy
+endless smash holding
+heal with smash attacks
+activities up
+giant killer
+metal killer
+assist killer
+jam final smash charge
+weapon resist up
+hyper smash attacks2
+neutral attack up2
+tilt attack up2
+special move power up2
+air attack up2
 none2
 none3
 none4
 none5
-itemAutograb
+item autograb
 none6
 none7
 none8
 none9
+critical healing up up
 none10
 none11
 none12
@@ -253,4 +254,3 @@ none29
 none30
 none31
 none32
-none33

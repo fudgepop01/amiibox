@@ -1,0 +1,124 @@
+ability 1: ABILITY
+0xEC
+0xED
+stats
+one of the amiibo`s abilities
+
+ability 2: ABILITY
+0xED
+0xEE
+stats
+one of the amiibo`s abilities
+
+ability 3: ABILITY
+0xEE
+0xEF
+stats
+one of the amiibo`s abilities
+
+learning: u8
+0xE2
+0xE3
+behavior
+whether or not the amiibo's AI will learn over time
+
+type: ENUM
+0xE3b0
+0xE3b2
+stats
+{
+  neutral:  0b00
+  attack:   0b01
+  defense:  0b10
+  grab:     0b11
+}
+the amiibo`s `typing`
+
+level exp: u16
+0x14C
+0x14E
+stats
+controlls the amiibo`s visible level. This only affects buffs.
+
+attack: i16
+0x150
+0x152
+stats
+the amiibo`s attack stat
+
+defense: i16
+0x152
+0x154
+stats
+the amiibo`s defense stat
+
+gift: u16
+0x156
+0x158
+misc
+whether or not the amiibo will give you gifts upon scanning
+it in. Can be used to farm stuff.
+
+costume: ENUM
+0x1A3b4
+0x1A3b8
+misc
+{
+  color 1: 0b0000
+  color 2: 0b0001
+  color 3: 0b0010
+  color 4: 0b0011
+  color 5: 0b0100
+  color 6: 0b0101
+  color 7: 0b0110
+  color 8: 0b0111
+  color 9 (mii only): 0b1000
+  color 10 (mii only): 0b1001
+  color 11 (mii only): 0b1010
+  color 12 (mii only): 0b1011
+}
+the skin the amiibo has
+
+mii fighter neutral special: ENUM
+0xEFb6
+0xEFb8
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of neutral special the mii uses
+
+mii fighter side special: ENUM
+0xEFb4
+0xEFb6
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of side special the mii uses
+
+mii fighter up special: ENUM
+0xEFb2
+0xEFb4
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of up special the mii uses
+
+mii fighter down special: ENUM
+0xEFb0
+0xEFb2
+moveset
+{
+  special 1:  0b00
+  special 2:  0b01
+  special 3:  0b10
+}
+which variant of down special the mii uses

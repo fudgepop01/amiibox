@@ -1,6 +1,16 @@
 <script>
   import { afterUpdate } from 'svelte';
 
+  export let FULL_TOGGLE;
+  let attackParam;
+  let defenseParam;
+  let abilityParam1;
+  let abilityParam2;
+  let abilityParam3;
+  let atkDefLimit = 5000;
+  // 4200 (3), 4500 (2), 4800 (1), 5000 (0)
+
+
   export let params;
   export let abilities;
   export let data;
@@ -72,6 +82,13 @@
           HEX(p) { return 'see hex view...' },
           ABILITY(p) { return this.u8(p) },
         })[param.type](parseInt(param.start))
+
+        if (!FULL_TOGGLE && ['attack', 'defense'].includes(param.name)) {
+          if (param.name === 'attack') attackParam = param;
+          else defenseParam = param;
+          param.min = -5000;
+          param.max = 5000;
+        }
       }
     }
   })
@@ -100,6 +117,7 @@
       }
     } else {
       p.value = parseInt(v);
+
       ({
         u8(v, p) { return data.writeUInt8(v, p) },
         i8(v, p) { return data.writeInt8(v, p) },
@@ -123,7 +141,27 @@
         value = param.min + parseInt(evt.target.value.substring(1), 2);
       }
     } else {
-      value = evt.target.value;
+      value = parseInt(evt.target.value);
+    }
+
+    if (!FULL_TOGGLE) {
+      switch (param.name) {
+        case 'attack':
+          param.min = -atkDefLimit;
+          param.max = atkDefLimit;
+          if (Math.abs(value) + Math.abs(defenseParam.value) > atkDefLimit) {
+            value = atkDefLimit - Math.abs(defenseParam.value);
+          }
+          break;
+        case 'defense':
+          param.min = -atkDefLimit;
+          param.max = atkDefLimit;
+          if (Math.abs(value) + Math.abs(attackParam.value) > atkDefLimit) {
+            value = atkDefLimit - Math.abs(attackParam.value);
+          }
+          break;
+      }
+      if (!isBin) evt.target.value = value;
     }
 
     if (param.min <= value && value <= param.max) {
@@ -207,10 +245,12 @@
 <h1 class="header">
   Overview
 </h1>
-<div class="ui checkbox">
-  <input type="checkbox" on:change={(evt) => displayBin = evt.target.checked}>
-  <label>display binary?</label>
-</div>
+{#if FULL_TOGGLE}
+  <div class="ui checkbox">
+    <input type="checkbox" on:change={(evt) => displayBin = evt.target.checked}>
+    <label>display binary?</label>
+  </div>
+{/if}
 <div class="ui middle aligned selection list">
   {#each params as param}
     <div class="item">
