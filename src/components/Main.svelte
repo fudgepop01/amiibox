@@ -4,6 +4,7 @@
   import { remote } from 'electron';
   import Overview from './Overview.svelte';
   import Hex from './Hex.svelte';
+  import Credits from './Credits.svelte';
   import { EOL } from 'os';
 
   import CardIO from '../util/cardIO';
@@ -92,7 +93,16 @@
   let pw;
   async function initCard() {
     card = new CardIO();
-    return await card.init();
+    // setTimeout(() => {
+    //   card = undefined;
+    //   return false;
+    // }, 1000);
+    const thing = await card.init();
+    if (thing) return true;
+    else {
+      card = undefined;
+      return false;
+    } 
   }
 
   let updateEditorFn = (data) => {};
@@ -287,47 +297,6 @@
 <div class="top-left"></div>
 <div class="top-right"></div>
 <div class="bottom-left">
-  <div class="ui placeholder">
-    <div class="square image"></div>
-  </div>
-
-  <div class="io">
-    <div class="ui two mini buttons">
-      <button class="ui labeled icon button" on:click={() => loadFile('encrypt')}>
-        <i class="icon folder open"></i>
-        load_ENC
-      </button>
-      <button class="ui labeled icon button" on:click={() => saveFile('encrypt')}>
-        <i class="icon save"></i>
-        save_ENC
-      </button>
-    </div>
-    <div class="ui two mini buttons">
-      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => readCard()}>
-        <i class="icon download"></i>
-        Scan
-      </button>
-      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => writeCard()}>
-        <i class="icon upload"></i>
-        Apply
-      </button>
-    </div>
-    <div class="ui two mini buttons">
-      <button class="ui labeled icon button" on:click={() => loadFile('decrypt')}>
-        <i class="icon folder open"></i>
-        load_DEC
-      </button>
-      <button class="ui labeled icon button" on:click={() => saveFile('decrypt')}>
-        <i class="icon save"></i>
-        save_DEC
-      </button>
-    </div>
-    <button class={`${keys ? '' : 'disabled red'} ui labeled icon mini fluid button`} on:click={() => cloneCard()}>
-      <i class="icon plus"></i>
-      Clone
-    </button>
-  </div>
-
   <div class="ui middle aligned selection list">
     <div class="item" on:click={() => page="overview"}>
       <div class="header content">
@@ -341,6 +310,48 @@
         </div>
       </div>
     {/if}
+    <div class="item" on:click={() => page="credits"}>
+      <div class="header content">
+        Credits
+      </div>
+    </div>
+  </div>
+
+  <div class="io">
+    <div class="ui two mini buttons">
+      <button class="ui labeled icon button" on:click={() => loadFile('encrypt')}>
+        <i class="icon folder open"></i>
+        load_ENC
+      </button>
+      <button class="ui labeled icon button" on:click={() => saveFile('encrypt')}>
+        <i class="icon save"></i>
+        save_ENC
+      </button>
+    </div>
+    <!-- <div class="ui two mini buttons">
+      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => readCard()}>
+        <i class="icon download"></i>
+        Scan
+      </button>
+      <button class={`${keys ? '' : 'disabled red'} ui labeled icon button`} on:click={() => writeCard()}>
+        <i class="icon upload"></i>
+        Apply
+      </button>
+    </div> -->
+    <!-- <div class="ui two mini buttons">
+      <button class="ui labeled icon button" on:click={() => loadFile('decrypt')}>
+        <i class="icon folder open"></i>
+        load_DEC
+      </button>
+      <button class="ui labeled icon button" on:click={() => saveFile('decrypt')}>
+        <i class="icon save"></i>
+        save_DEC
+      </button>
+    </div> -->
+    <!-- <button class={`${keys ? '' : 'disabled red'} ui labeled icon mini fluid button`} on:click={() => cloneCard()}>
+      <i class="icon plus"></i>
+      Clone
+    </button> -->
   </div>
 </div>
 <div class="bottom-right">
@@ -353,5 +364,7 @@
       {data}
       {params}>
     </Hex>
+  {:else if page === 'credits'}
+    <Credits></Credits>
   {/if}
 </div>

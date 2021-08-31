@@ -11,21 +11,11 @@
   // 4200 (3), 4500 (2), 4800 (1), 5000 (0)
 
 
-  export let FULL_TOGGLE;
-  let attackParam;
-  let defenseParam;
-  let abilityParam1;
-  let abilityParam2;
-  let abilityParam3;
-  let atkDefLimit = 5000;
-  // 4200 (3), 4500 (2), 4800 (1), 5000 (0)
-
-
   export let params;
   export let abilities;
   export let data;
 
-  let displayBin = false;
+  let displayBin = true;
 
   const reverseLookup = (obj, val) => {
     for (const [k, v] of Object.entries(obj)) {
@@ -258,90 +248,94 @@
     right: 0;
     margin: auto;
   }
+  .container {
+    padding: 10px 20px;
+  }
 </style>
-
-<h1 class="header">
-  Overview
-</h1>
-{#if FULL_TOGGLE}
-  <div class="ui checkbox">
-    <input type="checkbox" on:change={(evt) => displayBin = evt.target.checked}>
-    <label>display binary?</label>
-  </div>
-{/if}
-<div class="ui middle aligned selection list">
-  {#each params as param, idx}
-    <div class="item">
-      <div class="content">
-        <div class="header">
-        {param.name}:
-        {#if param.type === 'ABILITY'}
-          <div class="ui scrolling search dropdown" bind:this={params[idx].dropdown}>
-            <input type="hidden"
-            on:change={(evt) => {writeAdjustment(abilities.map(v => v.toLowerCase()).indexOf(evt.target.value), param)}}
-            value={abilities[param.value]}
-            name="{`ability${params.indexOf(param)}`}">
-            <div class="default text">None</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              {#each abilities as ability}
-                <div class="item">{ability}</div>
-              {/each}
-            </div>
-          </div>
-        {:else if param.type === 'ENUM'}
-          <div class="ui scrolling search dropdown" bind:this={params[idx].dropdown}>
-            <input type="hidden"
-            on:change={(evt) => {writeAdjustment(param.enums[evt.target.value], param)}}
-            value={reverseLookup(param.enums, param.value)}
-            name="{`ability${params.indexOf(param)}`}">
-            <div class="default text">None</div>
-            <i class="dropdown icon"></i>
-            <div class="menu">
-              {#each Object.keys(param.enums) as e}
-                <div class="item">{e}</div>
-              {/each}
-            </div>
-          </div>
-        {:else if param.type === 'HEX'}
-          (edit as hex)
-        {:else if param.type === 'bits'}
-          <div class="ui transparent input">
-            <input
-              type="number"
-              min={param.min}
-              max={param.max}
-              value={param.value}
-              on:change={(evt) => checkBoundsAndSet(evt, param)}
-              placeholder="value..."/>
-          </div>
-          ({(param.value !== undefined) ? (param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0') : ''})
-        {:else}
-          <div class="ui transparent input">
-            <input type="number"
-              min={param.min}
-              max={param.max}
-              value={param.value}
-              on:change={(evt) => checkBoundsAndSet(evt, param)}
-              placeholder="value..."/>
-          </div>
-          <!-- forces update when value is changed -->
-          <span style="display: none">{thing}</span>
-          {#if displayBin}
-            <br/>
-            <div class="ui transparent left icon input">
-              <input
-                value={(param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0')}
-                on:keydown={(evt) => binEdit(evt, param)}
-                style="font-family: consolas;"
-                placeholder="value..."/>
-              <i class="angle double right icon"></i>
-            </div>
-          {/if}
-        {/if}
-        </div>
-        <div class="description">{param.description}</div>
-      </div>
+<div class="container">
+  <h1 class="header">
+    Overview
+  </h1>
+  {#if FULL_TOGGLE}
+    <div class="ui checkbox">
+      <input type="checkbox" on:change={(evt) => displayBin = evt.target.checked}>
+      <label>display binary?</label>
     </div>
-  {/each}
+  {/if}
+  <div class="ui middle aligned selection list">
+    {#each params as param, idx}
+      <div class="item">
+        <div class="content">
+          <div class="header">
+          {param.name}:
+          {#if param.type === 'ABILITY'}
+            <div class="ui scrolling search dropdown" bind:this={params[idx].dropdown}>
+              <input type="hidden"
+              on:change={(evt) => {writeAdjustment(abilities.map(v => v.toLowerCase()).indexOf(evt.target.value), param)}}
+              value={abilities[param.value]}
+              name="{`ability${params.indexOf(param)}`}">
+              <div class="default text">None</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                {#each abilities as ability}
+                  <div class="item">{ability}</div>
+                {/each}
+              </div>
+            </div>
+          {:else if param.type === 'ENUM'}
+            <div class="ui scrolling search dropdown" bind:this={params[idx].dropdown}>
+              <input type="hidden"
+              on:change={(evt) => {writeAdjustment(param.enums[evt.target.value], param)}}
+              value={reverseLookup(param.enums, param.value)}
+              name="{`ability${params.indexOf(param)}`}">
+              <div class="default text">None</div>
+              <i class="dropdown icon"></i>
+              <div class="menu">
+                {#each Object.keys(param.enums) as e}
+                  <div class="item">{e}</div>
+                {/each}
+              </div>
+            </div>
+          {:else if param.type === 'HEX'}
+            (edit as hex)
+          {:else if param.type === 'bits'}
+            <div class="ui transparent input">
+              <input
+                type="number"
+                min={param.min}
+                max={param.max}
+                value={param.value}
+                on:change={(evt) => checkBoundsAndSet(evt, param)}
+                placeholder="value..."/>
+            </div>
+            ({(param.value !== undefined) ? (param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0') : ''})
+          {:else}
+            <div class="ui transparent input">
+              <input type="number"
+                min={param.min}
+                max={param.max}
+                value={param.value}
+                on:change={(evt) => checkBoundsAndSet(evt, param)}
+                placeholder="value..."/>
+            </div>
+            <!-- forces update when value is changed -->
+            <span style="display: none">{thing}</span>
+            {#if displayBin}
+              <br/>
+              <div class="ui transparent left icon input">
+                <input
+                  value={(param.value >>> 0).toString(2).substr(-param.bitCount).padStart(param.bitCount, '0')}
+                  on:keydown={(evt) => binEdit(evt, param)}
+                  style="font-family: consolas;"
+                  placeholder="value..."/>
+                <i class="angle double right icon"></i>
+              </div>
+            {/if}
+          {/if}
+          </div>
+          <div class="description">{param.description}</div>
+        </div>
+      </div>
+    {/each}
+  </div>
 </div>

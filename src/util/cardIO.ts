@@ -28,13 +28,18 @@ class CardIO {
   data: Buffer;
 
   constructor() {
-    this.nfc = new NFC;
+    this.nfc = new NFC();
   }
 
   init() {
+    console.log("initialization");
     return new Promise((resolve) => {
-      setTimeout(() => {resolve(false)}, 1000);
+      console.log("timeout");
+      setTimeout(() => {
+        console.log("resolved false");
+        resolve(false)}, 1000);
       this.nfc.on('reader', (reader) => {
+        console.log("attached??");
         this.reader = reader;
         resolve(true);
       });
