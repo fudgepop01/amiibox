@@ -166,3 +166,5 @@ Ciao for now, and happy modding!~
 ---
 
 <img src="build/icon.png" height="100"/>
+
+<!-- old thing: "@pokusew/pcsclite": "^0.6.0", -->

@@ -33,7 +33,6 @@ export default {
 	external: [
 		'electron',
 		'child_process',
-		'nfc-pcsc',
 		'crypto',
 		'maboii',
 		'fs',

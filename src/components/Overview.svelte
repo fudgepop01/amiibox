@@ -258,7 +258,7 @@
   </h1>
   {#if FULL_TOGGLE}
     <div class="ui checkbox">
-      <input type="checkbox" on:change={(evt) => displayBin = evt.target.checked}>
+      <input type="checkbox" checked="true" on:change={(evt) => displayBin = evt.target.checked}>
       <label>display binary?</label>
     </div>
   {/if}
