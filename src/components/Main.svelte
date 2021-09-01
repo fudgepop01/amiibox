@@ -28,8 +28,8 @@
     let config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
     if (!FULL_TOGGLE) config.regions = '__default__';
     if (config.keys !== 'UNCONFIGURED') keys = config.keys;
-
-    abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split(EOL);
+	abilities = config.abilities, 'utf8';
+	
     const splitted = (await readFile(
       config.regions === '__DEFAULT__'
         ? `${__dirname}/amiibo/regions.txt`

@@ -31,6 +31,15 @@
 		needsKeys = false;
 	}
 
+	async function setAbilities() {
+		let abilityPath = await remote.dialog.showOpenDialog({
+			message: 'select abilities.txt'
+		})[0];
+
+		config.abilities = abilityPath;
+		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
+	}
+
 	async function setRegions() {
 		let regionPath = await remote.dialog.showOpenDialog({
 			message: 'select regions.txt'
@@ -62,12 +71,13 @@
 			console.log(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
 		}
 		catch (e) {
-			await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, '{"keys":"UNCONFIGURED","regions":"__DEFAULT__"}', 'utf8');
+			await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, '{"keys":"UNCONFIGURED","regions":"__DEFAULT__","abilities":"DEFAULT_ABILITIES"}', 'utf8');
 		}
 
 		config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
 		if (!FULL_TOGGLE) config.regions = '__default__';
 		needsKeys = (config.keys === "UNCONFIGURED");
+		config.abilities = 'DEFAULT_ABILITIES';
 	})
 </script>
 
@@ -115,6 +125,7 @@
     <div class="ui container">
 			<div class={`${needsKeys ? 'massive' : 'small'} ui fluid buttons`}>
       	<button class={`enter-btn ui ${needsKeys ? '' : 'basic'} red button`} on:click={() => setKeys()}>select keys</button>
+		<button class={"enter-btn ui basic red button"} on:click={() => setAbilities()}>select ability file</button>
       	{#if FULL_TOGGLE}
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegions()}>select region config</button>
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToDefualt()}>RESET region config</button>
