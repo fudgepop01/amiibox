@@ -2,7 +2,7 @@
 
 ### Amiibox Homepage & Download Link: https://fudgepop01.github.io/amiibox/
 
-### Discuss on Discord: https://discord.gg/C8K2xcU
+### Discuss on Discord: https://discord.gg/2v6pcw3zzg
 
 ---
 
@@ -18,8 +18,7 @@ how this program functions and what it's all about! Now, without further ado:
 ## What is it?
 
 Amiibox is a powerful amiibo modding suite that allows you to:
-- read and write amiibo bins as encrypted *or* decrypted files
-- interface directly with [this](https://www.amazon.com/ETEKJOY-ACR122U-13-56MHz-Contactless-Writable) usb NFC-reader to enable reading and writing using that
+- read and write amiibo bins as encrypted files
 - dynamically read from an editable `regions.txt` file to suit your needs
 - edit the values specified in `regions.txt` in multitude of different ways
 - edit the **behavior** of smash ultimate amiibo figures, something which typical apps are unable to do
@@ -74,22 +73,15 @@ of different methods.
 
 - load_ENC / save_ENC
   - these are used to load and save encrypted amiibo bin files for use with tagmo or something
-- scan / apply
-  - these are used to scan and write to a card directly on the attached reader if one exists
-- load_DEC / save_DEC
-  - these are used to load and save *decrypted* bin files. These can be used for
-    studying how things work if you really don't like my own custom built-in hex editor
-- clone
-  - this is used to clone one amiibo bin onto a **blank** NTAG215 card **using the attached reader**
 
-There are also list items below these IO buttons, "Overview" and "Hex," which are used to
-switch views. More on hex view later
+There are also list items above these IO buttons, "Overview," "Hex," and "Credits". 
+Overview and Hex are used to swith between layouts, Credits is used to display the Credits screen. More on hex view later.
 
 ### The Actual Overview Section
 
 #### Display Binary
 
-this button is used to enable editing the numeric values in here using a custom binary input
+this button is used to enable/disable editing the numeric values in here using a custom binary input
 field. For most, this won't be useful - but for those that wish to experiment more with amiibo
 AI they're a HUGE timesaver.
 
