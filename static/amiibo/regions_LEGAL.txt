@@ -1,3 +1,192 @@
+character 1of2: ENUM
+0x1DCb0
+0x1DCb32
+section
+{
+banjo and kazooie:  0x0000403B
+bayonetta:  0x00004032
+bayonetta alt:  0x00014032
+bowser:  0x00000500
+bowser jr:  0x00000600
+byleth:  0x00000B21
+captain falcon:  0x00000006
+charizard:  0x00000619
+chrom:  0x00000821
+cloud:  0x00000036
+cloud alt:  0x00010036
+corrin:  0x00000521
+corrin alt:  0x00010521
+daisy:  0x00001300
+dark pit:  0x00004107
+dark samus:  0x0000C305
+diddy kong:  0x00000900
+donkey kong:  0x00000800
+dr mario:  0x00010000
+duck hunt:  0x00008207
+falco:  0x00008105
+fox:  0x00008005
+ganondorf:  0x00010201
+greninja:  0x0000921B
+hero:  0x00004036
+ice climbers:  0x00008F07
+ike:  0x00000121
+incineroar:  0x0000D71B
+inkling:  0x00010008
+isabelle:  0x00008101
+ivysaur:  0x00000219
+jigglypuff:  0x00002719
+joker:  0x0000003A
+ken:  0x0000C134
+king dedede:  0x0000021F
+king k rool:  0x0000C000
+kirby:  0x0000001F
+link:  0x00000001
+little mac:  0x0000C006
+lucario:  0x0000C01A
+lucas:  0x00008122
+lucina:  0x00000221
+luigi:  0x00000100
+mario:  0x00000000
+marth:  0x00000021
+mega man:  0x00008034
+meta knight:  0x0000011F
+mewtwo:  0x00009619
+mii brawler:  0x0000C007
+mii gunner:  0x0002C007
+mii swordfighter:  0x0001C007
+mr game and watch:  0x00008007
+ness:  0x00008022
+olimar:  0x00014006
+pacman:  0x00004033
+palutena:  0x00004207
+peach:  0x00000200
+pichu:  0x0000AC19
+pikachu:  0x00001919
+piranha plant:  0x00002400
+pit:  0x00004007
+pokemon trainer:  0x0000401D
+richter:  0x0000C137
+ridley:  0x0000C205
+rob famicom:  0x00008107
+rob nes:  0x00008107
+robin:  0x00000321
+rosalina and luma:  0x00010400
+roy:  0x00000421
+ryu:  0x0000C034
+samus:  0x0000C005
+sheik:  0x00010101
+shulk:  0x00004022
+simon:  0x0000C037
+snake:  0x00008037
+sonic:  0x00000032
+squirtle:  0x00000719
+terry:  0x0000803C
+toon link:  0x00010001
+villager:  0x00008001
+wario:  0x00000700
+wii fit trainer:  0x00000007
+wolf:  0x00008405
+yoshi:  0x00000300
+young link:  0x00000001
+zelda:  0x00000101
+zero suit samus:  0x0001C005
+}
+
+character 2of2: ENUM
+0x1E0b0
+0x1E0b32
+section
+{
+banjo and kazooie:  0x0200A303
+bayonetta:  0x02005B02
+bayonetta alt:  0x02006403
+bowser:  0x02001400
+bowser jr:  0x02001500
+byleth:  0x0200A503
+captain falcon:  0x02001200
+charizard:  0x02002400
+chrom:  0x02008803
+cloud:  0x02005902
+cloud alt:  0x02006203
+corrin:  0x02005A02
+corrin alt:  0x02006303
+daisy:  0x02007A03
+dark pit:  0x02002000
+dark samus:  0x02008003
+diddy kong:  0x02000D00
+donkey kong:  0x02000300
+dr mario:  0x02001900
+duck hunt:  0x02002F00
+falco:  0x02001C00
+fox:  0x02000500
+ganondorf:  0x02001B00
+greninja:  0x02002500
+hero:  0x0200A203
+ice climbers:  0x02008103
+ike:  0x02001800
+incineroar:  0x02008603
+inkling:  0x02008203
+isabelle:  0x02007D03
+ivysaur:  0x02008303
+jigglypuff:  0x02002600
+joker:  0x0200A103
+ken:  0x02008903
+king dedede:  0x02002800
+king k rool:  0x02007B03
+kirby:  0x02000A00
+link:  0x02000400
+little mac:  0x02000F00
+lucario:  0x02001100
+lucas:  0x02005102
+lucina:  0x02002900
+luigi:  0x02000C00
+mario:  0x02000000
+marth:  0x02000B00
+mega man:  0x02003100
+meta knight:  0x02002700
+mewtwo:  0x02003D02
+mii brawler:  0x02002100
+mii gunner:  0x02002300
+mii swordfighter:  0x02002200
+mr game and watch:  0x02002D00
+ness:  0x02002C00
+olimar:  0x02001E00
+pacman:  0x02003200
+palutena:  0x02001F00
+peach:  0x02000100
+pichu:  0x02008503
+pikachu:  0x02000900
+piranha plant:  0x02008D03
+pit:  0x02001000
+pokemon trainer:  0x02008703
+richter:  0x02008C03
+ridley:  0x02007F03
+rob famicom:  0x02002E00
+rob nes:  0x02003300
+robin:  0x02002A00
+rosalina and luma:  0x02001300
+roy:  0x02005202
+ryu:  0x02005302
+samus:  0x02000600
+sheik:  0x02001700
+shulk:  0x02002B00
+simon:  0x02008B03
+snake:  0x02008A03
+sonic:  0x02003000
+squirtle:  0x02008403
+terry:  0x0200A403
+toon link:  0x02001600
+villager:  0x02000800
+wario:  0x02001A00
+wii fit trainer:  0x02000700
+wolf:  0x02007E03
+yoshi:  0x02000200
+young link:  0x02007C03
+zelda:  0x02000E00
+zero suit samus:  0x02001D00
+}
+Select the same character in both drop boxes
+
 ability 1: ABILITY
 0xEC
 0xED
@@ -86,6 +275,254 @@ misc
 }
 the skin the amiibo has
 
+hat: ENUM
+0xF0b0
+0xF1b8
+misc
+{
+  none: -1
+  mushroom2: 0
+  hockey: 1
+  demon: 2
+  crown: 3
+  prince: 4
+  lady: 5
+  sheik: 6
+  ninja: 7
+  silkhat: 8
+  mushroom1: 9
+  princesszelda: 10
+  daisy: 11
+  togezo: 12
+  barbara: 13
+  peach: 14
+  princess: 15
+  heyho: 16
+  maid: 17
+  wizard: 18
+  mario: 19
+  meta: 20
+  luigi: 21
+  wario: 22
+  waluigi: 23
+  wanwan: 24
+  pirate: 25
+  bandit: 26
+  dragon: 27
+  link: 28
+  majorasmask: 29
+  dunban: 30
+  cathead m: 31
+  cathead f: 32
+  monkeyhead m: 33
+  monkeyhead f: 34
+  isabelle: 35
+  splatoonhair m: 36
+  splatoonhair f: 37
+  splatoon: 38
+  bearhead m: 39
+  bearhead f: 40
+  kingkrool: 41
+  flyingman: 42
+  chrom: 43
+  blackknight: 44
+  samus: 45
+  kkslide: 46
+  toad: 47
+  nature: 48
+  starfox: 49
+  captainfalcon: 50
+  metal m: 51
+  metal f: 52
+  takamaru: 53
+  ashley: 54
+  doseisan: 55
+  splatoon2 m: 56
+  splatoon2 f: 57
+  linkbow: 58
+  skullkid: 59
+  beit: 60
+  mariomaker: 61
+  cappy: 62
+  yoshiwool: 63
+  chibirobo: 64
+  vince: 65
+  dixiekong: 66
+  yigaclan: 67
+  saki: 68
+  customrobo: 69
+  nia: 70
+  springman m: 71
+  ribbongirl f: 72
+  marx: 73
+  robin: 74
+  lip: 75
+  specialforces: 76
+  astronaut: 77
+  labo: 78
+  rex: 79
+  (dlc) p3hero: 80
+  (dlc) p4hero: 81
+  (dlc) p4kuma: 82
+  (dlc) p5mona: 83
+  (dlc) tails: 84
+  (dlc) knuckles: 85
+  (dlc) veronica: 86
+  (dlc) roto: 87
+  (dlc) monk m: 88
+  (dlc) monk f: 89
+  (dlc) slime: 90
+  (dlc) rocket: 91
+  (dlc) goemon: 92
+  (dlc) sans: 93
+  (dlc) bruce: 94
+  (dlc) zero: 95
+  (dlc) ryo: 96
+  (dlc) nakoruru: 97
+  (dlc) iori: 98
+  (dlc) akira: 99
+  (dlc) jacky: 100
+  (dlc) cuphead: 101
+  (dlc) altair: 102
+  (dlc) rabbids: 103
+  (dlc) x: 104
+  (dlc) exe: 105
+  (dlc) linkancient: 106
+}
+the hat the amiibo has
+
+outfit: ENUM
+0xF2b0
+0xF2b8
+misc
+{
+  (all) none: -1
+  (b) normalfighter m: 0
+  (b) normalfighter f: 1
+  (b) martialarts m: 2
+  (b) martialarts f: 3
+  (b) chinese m: 4
+  (b) chinese f: 5
+  (b) machine m: 6
+  (b) machine f: 7
+  (b) protector m: 8
+  (b) protector f: 9
+  (b) vampire m: 10
+  (b) vampire f: 11
+  (b) biker m: 12
+  (b) biker f: 13
+  (b) sbtshirt m: 14
+  (b) sbtshirt f: 15
+  (b) catsuit m: 16
+  (b) catsuit f: 17
+  (b) kingkrool m: 18
+  (b) flyingman m: 19
+  (b) businessman m: 20
+  (b) businessman f: 21
+  (b) toad m: 22
+  (b) toad f: 23
+  (b) cfalcon m: 24
+  (b) metal m: 25
+  (b) metal f: 26
+  (b) skullkid m: 27
+  (b) mariomaker m: 28
+  (b) yoshiwool m: 29
+  (b) springman m: 30
+  (b) ribbongirl f: 31
+  (b) nia f: 32
+  (b) maid f: 33
+  (s) maid f: 34
+  (g) maid f: 35
+  (b) deacon m: 36
+  (s) deacon m: 37
+  (g) deacon m: 38
+  (b) labo m: 39
+  (s) normalswordman m: 40
+  (s) normalswordman f: 41
+  (s) pirate m: 42
+  (s) pirate f: 43
+  (s) ironSuit m: 44
+  (s) ironSuit f: 45
+  (s) ninja m: 46
+  (s) ninja f: 47
+  (s) sbtshirts m: 48
+  (s) sbtshirts f: 49
+  (s) link m: 50
+  (s) dunban m: 51
+  (s) monkeysuit m: 52
+  (s) monkeysuit f: 53
+  (s) chrom m: 54
+  (s) blackknight m: 55
+  (s) businessman m: 56
+  (s) businessman f: 57
+  (s) nature f: 58
+  (s) takamaru m: 59
+  (s) ashley f: 60
+  (s) linkbow m: 61
+  (s) vince m: 62
+  (s) yigaclan m: 63
+  (s) yigaclan f: 64
+  (s) robin m: 65
+  (s) lip f: 66
+  (g) normalgunner m: 67
+  (g) normalgunner f: 68
+  (g) bandit m: 69
+  (g) bandit f: 70
+  (g) steam m: 71
+  (g) steam f: 72
+  (g) powerd m: 73
+  (g) dragon m: 74
+  (g) dragon f: 75
+  (g) sbtshirtg m: 76
+  (g) sbtshirtg f: 77
+  (g) isabelle f: 78
+  (g) splatoon m: 79
+  (g) splatoon f: 80
+  (g) bearsuit m: 81
+  (g) bearsuit f: 82
+  (g) samus f: 83
+  (g) kkslider m: 84
+  (g) businessman m: 85
+  (g) businessman f: 86
+  (g) starfox m: 87
+  (g) splatoon2 m: 88
+  (g) splatoon2 f: 89
+  (g) chibirobo m: 90
+  (g) customrobo m: 91
+  (g) specialforces m: 92
+  (g) specialforces f: 93
+  (g) astronaut m: 94
+  (g) saki m: 95
+  (s) rex m: 96
+  (s) p3hero m: 97
+  (s) p4hero m: 98
+  (g) tails m: 99
+  (b) knuckles m: 100
+  (b) monk m: 101
+  (b) monk f: 102
+  (s) roto m: 103
+  (s) veronica f: 104
+  (b) rocket m: 105
+  (b) rocket f: 106
+  (s) goemon m: 107
+  (g) sans m: 108
+  (g) bruce m: 109
+  (s) zero m: 110
+  (b) ryo m: 111
+  (s) nakoruru m: 112
+  (s) nakoruru f: 113
+  (b) iori m: 114
+  (b) akira m: 115
+  (b) jacky m: 116
+  (g) cuphead m: 117
+  (s) altair m: 118
+  (g) x m: 119
+  (g) exe m: 120
+  (g) exe f: 121
+  (s) linkancient m: 122
+}
+the outfit the amiibo has
+
 mii fighter neutral special: ENUM
 0xEFb6
 0xEFb8
@@ -129,3 +566,49 @@ moveset
   special 3:  0b10
 }
 which variant of down special the mii uses
+
+mii voice: ENUM
+0x1a2b0
+0x1a2b8
+misc
+{
+  type 1, pitch low: 3
+  type 1, pitch normal: 4
+  type 1, pitch high: 5
+  type 2, pitch low: 21
+  type 2, pitch normal: 22
+  type 2, pitch high: 23
+  type 3, pitch low: 6
+  type 3, pitch normal: 7
+  type 3, pitch high: 8
+  type 4, pitch low: 24
+  type 4, pitch normal: 25
+  type 4, pitch high: 26
+  type 5, pitch low: 12
+  type 5, pitch normal: 13
+  type 5, pitch high: 14
+  type 6, pitch low: 27
+  type 6, pitch normal: 28
+  type 6, pitch high: 29
+  (squirtle) type 7, pitch low: 0
+  (ivysaur) type 7, pitch normal: 1
+  (charizard) type 7, pitch high: 2
+  type 8, pitch low: 18
+  type 8, pitch normal: 19
+  type 8, pitch high: 20
+  type 9, pitch low: 15
+  type 9, pitch normal: 16
+  type 9, pitch high: 17
+  type 10, pitch low: 33
+  type 10, pitch normal: 34
+  type 10, pitch high: 35
+  type 11, pitch low: 9
+  type 11, pitch normal: 10
+  type 11, pitch high: 11
+  type 12, pitch low: 30
+  type 12, pitch normal: 31
+  type 12, pitch high: 32
+  off: 37
+  type 0 (off): 38
+}
+deals with the voice of the amiibo
