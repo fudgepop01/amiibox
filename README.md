@@ -2,7 +2,7 @@
 
 ### Amiibox Homepage & Download Link: https://fudgepop01.github.io/amiibox/
 
-### Discuss on Discord: https://discord.gg/2v6pcw3zzg
+### Discuss questions, comments, or concerns on Discord: https://discord.gg/2v6pcw3zzg
 
 ---
 
