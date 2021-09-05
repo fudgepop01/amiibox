@@ -13,9 +13,9 @@
 	const dispatch = createEventDispatcher();
 
 	async function setKeys() {
-		let keyPath = await remote.dialog.showOpenDialog({
+		let keyPath = (await remote.dialog.showOpenDialog({
 			message: 'select key_retail.bin'
-		})[0];
+		})).filePaths[0];
 		let sha1 = crypt.createHash('sha1');
 		sha1.update(await readFile(keyPath));
 		if (sha1.digest('hex') !== "bbdbb49a917d14f7a997d327ba40d40c39e606ce") {
@@ -32,9 +32,9 @@
 	}
 
 	async function setRegions() {
-		let regionPath = await remote.dialog.showOpenDialog({
+		let regionPath = (await remote.dialog.showOpenDialog({
 			message: 'select regions.txt'
-		})[0];
+		})).filePaths[0];
 		if (!regionPath) return;
 
 		config.regions = regionPath;
