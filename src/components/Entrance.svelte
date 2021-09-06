@@ -72,7 +72,7 @@
 		})[0];
 		if (confirmation === 0) return;
 
-		config.regions = '__DEFAULT__';
+		config.regions = '__community__';
 		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
 	}
 	
@@ -104,7 +104,7 @@
 		config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
 		if (!FULL_TOGGLE) config.regions = '__default__';
 		needsKeys = (config.keys === "UNCONFIGURED");
-		config.abilities = 'DEFAULT_ABILITIES';
+		config.abilities = '__DEFAULT__';
 	})
 </script>
 
