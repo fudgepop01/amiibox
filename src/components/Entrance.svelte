@@ -63,6 +63,20 @@
 		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
 	}
 	
+	async function setRegionsToCommunity() {
+		const confirmation = await remote.dialog.showMessageBox({
+			type: "question",
+			buttons: ["cancel", "ok"],
+			title: 'confirmation',
+			message: "are you sure you wish to set the regions to community?"
+		})[0];
+		if (confirmation === 0) return;
+
+		config.regions = '__DEFAULT__';
+		await writeFile(`${remote.app.getPath('userData')}/PATHS.json`, JSON.stringify(config, null, 2), 'utf8');
+	}
+	
+	
 	async function setAbilitiesToDefualt() {
 		const confirmation = await remote.dialog.showMessageBox({
 			type: "question",
@@ -143,6 +157,7 @@
       	{#if FULL_TOGGLE}
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegions()}>select region config</button>
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToDefualt()}>RESET region config</button>
+					<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToCommunity()}>select community regions</button>
 				{/if}
 			</div>
       <button class={`${needsKeys ? 'mini ' : 'huge'} enter-btn fluid ui black basic button`} on:click={() => dispatch('navigate', 'main')}>Begin</button>
