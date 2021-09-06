@@ -31,7 +31,7 @@ function reloadOnChange(win: BrowserWindow) {
 
 function launch() {
 	win = new BrowserWindow({
-		width: 1000,
+		width: 1050,
 		height: 800,
 		minWidth: 800,
 		backgroundColor: 'white',

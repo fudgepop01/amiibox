@@ -54,9 +54,11 @@
     "chokidar": "^3.0.0",
     "crc-32": "^1.2.0",
     "cross-env": "^5.2.0",
+    "eol": "^0.9.1",
     "fudgedit": "^1.0.0",
     "jquery": "^3.5.1",
     "maboii": "^1.1.0",
+    "protectedtext-api": "^1.0.1",
     "rollup-plugin-terser": "^6.1.0",
     "semantic-ui": "^2.4.2"
   }

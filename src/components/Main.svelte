@@ -11,7 +11,9 @@
   import sign from '../util/checksum';
   import encrypt from '../util/re_encrypt';
   import { calcKeyARaw } from '../util/pwd215';
-
+  import ProtectedTextAPI from 'protectedtext-api';
+  import eol from 'eol';
+  
   export let FULL_TOGGLE;
 
   const readFile = promisify(fs.readFile);
@@ -28,15 +30,28 @@
     let config = JSON.parse(await readFile(`${remote.app.getPath('userData')}/PATHS.json`, 'utf8'));
     if (!FULL_TOGGLE) config.regions = '__default__';
     if (config.keys !== 'UNCONFIGURED') keys = config.keys;
-	if (config.abilities == '__DEFAULT__') { abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split(EOL)}
-	else abilities = (await readFile(config.abilities, 'utf8')).split(EOL);
-	
+    if (config.abilities == '__DEFAULT__') { abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split(EOL)}
+    else abilities = (await readFile(config.abilities, 'utf8')).split(EOL);
+    if (config.regions == '__community__') {
+        const site_id = "amiiboregions";
+        const site_password = "lasagawinsamiibo";
+		var TabManager = (await new ProtectedTextAPI(site_id, site_password).loadTabs());
+        var savedText  = (await TabManager.view());
+        var bettertext = eol.auto(savedText)
+        // View saved content
+        console.log(savedText);
+        await writeFile('regions_community.txt', bettertext)
+    }
+    
+    
     const splitted = (await readFile(
       config.regions === '__DEFAULT__'
         ? `${__dirname}/amiibo/regions.txt`
         : config.regions === '__default__'
           ? `${__dirname}/amiibo/regions_LEGAL.txt`
-          : config.regions,
+          : config.regions === '__community__'
+		    ? 'regions_community.txt'
+			: config.regions,
       'utf8'))
       .split(EOL);
 
