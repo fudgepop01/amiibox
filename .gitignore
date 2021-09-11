@@ -1,4 +1,5 @@
 .DS_Store
+*.bat
 /node_modules
 /dist
 /static/keys/key_retail.bin
