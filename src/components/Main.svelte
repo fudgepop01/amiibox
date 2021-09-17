@@ -122,7 +122,7 @@
   let updateEditorFn = (data) => {};
   async function loadFile(method) {
     let paths = await remote.dialog.showOpenDialog({
-      message: 'open amiibo bin'
+      title: 'Open amiibo bin'
     });
     if (method === 'encrypt') data = decrypt(await readFile(paths.filePaths[0]), keys);
     else data = await readFile(paths.filePaths[0]);
@@ -132,7 +132,7 @@
 
   async function saveFile(method) {
     let p = await remote.dialog.showSaveDialog({
-      message: 'save amiibo bin'
+      title: 'Save amiibo bin'
     });
 
     if (FULL_TOGGLE) data[0xE3] |= 0b00000001;
@@ -151,8 +151,14 @@
     data.copy(decData, 0xE0, 0xE0, 0x1B5);
     sign(decData);
 
-    if (method === 'encrypt') await writeFile(p.filePath, encrypt(decData, keys));
-    else await writeFile(p.filePath, decData);
+    if (p.filePath.includes('.bin')) {
+        if (method === 'encrypt') await writeFile(p.filePath, encrypt(decData, keys));
+        else await writeFile(p.filePath, decData);
+    } 
+    else {
+        if (method === 'encrypt') await writeFile(p.filePath + '.bin', encrypt(decData, keys));
+        else await writeFile(p.filePath + '.bin', decData);
+    }
   }
 
   // async function readCard() {
