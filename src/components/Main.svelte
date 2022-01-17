@@ -32,6 +32,7 @@
     if (config.keys !== 'UNCONFIGURED') keys = config.keys;
     if (config.abilities == '__DEFAULT__') { abilities = (await readFile(`${__dirname}/amiibo/abilities.txt`, 'utf8')).split(EOL)}
     else abilities = (await readFile(config.abilities, 'utf8')).split(EOL);
+    try {
     if (config.regions == '__community__') {
         const site_id = "amiiboregions";
         const site_password = "lasagawinsamiibo";
@@ -41,8 +42,8 @@
         // View saved content
         console.log(savedText);
         await writeFile('regions_community.txt', bettertext)
-    }
-    
+    } 
+    }catch (error) {}
     
     const splitted = (await readFile(
       config.regions === '__DEFAULT__'
@@ -54,7 +55,7 @@
 			: config.regions,
       'utf8'))
       .split(EOL);
-
+    
     params.push({});
     let lineNum = 0;
     let description = '';
