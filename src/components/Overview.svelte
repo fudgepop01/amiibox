@@ -1,6 +1,6 @@
 <script>
   import { afterUpdate, tick } from 'svelte';
-
+  import * as maboii from 'maboii';
   export let FULL_TOGGLE;
   let attackParam;
   let defenseParam;
@@ -16,7 +16,27 @@
   export let data;
 
   let displayBin = true;
-
+  function randomSN() {
+    let SN = [];
+    let dump = new Buffer(540).fill(0);
+    for (var i=0; i < 9; i++)
+    {
+      SN.push(Math.floor(Math.random() * 255));
+    }
+    SN[0] = 4
+    SN[3] = 0x88 ^ SN[0] ^ SN[1] ^ SN[2];
+    SN[8] = SN[3] ^ SN[4] ^ SN[5] ^ SN[6];
+    data[0x1d4] = SN[0]
+    data[0x1d5] = SN[1]
+    data[0x1d6] = SN[2]
+    data[0x1d7] = SN[3]
+    data[0x1d8] = SN[4]
+    data[0x1d9] = SN[5]
+    data[0x1da] = SN[6]
+    data[0x1db] = SN[7]
+    data[0x0]   = SN[8]
+    return data[0x1d4];
+  }
   const reverseLookup = (obj, val) => {
     for (const [k, v] of Object.entries(obj)) {
       if (v === val) return k;
@@ -262,6 +282,10 @@
       <label>display binary?</label>
     </div>
   {/if}
+  <div class="ui checkbox">
+    <input type="checkbox" checked="true" on:change={(evt) => console.log(randomSN())}>
+    <label>shuffle serial number?</label>
+  </div>
   <div class="ui middle aligned selection list">
     {#each params as param, idx}
       <div class="item">
