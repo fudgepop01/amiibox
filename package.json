@@ -37,7 +37,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@types/node": "^12.6.8",
-    "electron": "^9.4.4",
+    "electron": "^11.5.0",
     "electron-builder": "^22.11.7",
     "rollup": "^1.32.1",
     "rollup-plugin-babel": "^4.3.3",
