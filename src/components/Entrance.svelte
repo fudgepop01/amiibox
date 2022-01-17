@@ -151,16 +151,19 @@
     <div class="ui hidden divider" />
     <div class="ui container">
 			<div class={`${needsKeys ? 'massive' : 'small'} ui fluid buttons`}>
-      	<button class={`enter-btn ui ${needsKeys ? '' : 'basic'} red button`} on:click={() => setKeys()}>select keys</button>
+      	<button class={`enter-btn ui ${needsKeys ? '' : 'basic'} red button`} on:click={() => setKeys()}>select key file</button>
 		<button class={"enter-btn ui basic red button"} on:click={() => setAbilities()}>select ability file</button>
 		<button class={"enter-btn ui basic red button"} on:click={() => setAbilitiesToDefualt()}>RESET ability config</button>
-      	{#if FULL_TOGGLE}
+
+			</div>
+      <button class={`${needsKeys ? 'mini ' : 'huge'} enter-btn fluid ui black basic button`} on:click={() => dispatch('navigate', 'main')}>Begin</button>
+	       <div class={`${needsKeys ? 'massive' : 'small'} ui fluid buttons`}>
+	   {#if FULL_TOGGLE}
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegions()}>select region config</button>
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToDefualt()}>RESET region config</button>
 					<button class={"enter-btn ui basic red button"} on:click={() => setRegionsToCommunity()}>select community regions</button>
 				{/if}
-			</div>
-      <button class={`${needsKeys ? 'mini ' : 'huge'} enter-btn fluid ui black basic button`} on:click={() => dispatch('navigate', 'main')}>Begin</button>
+		   </div>
     </div>
   </div>
 </div>

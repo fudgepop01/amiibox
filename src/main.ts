@@ -30,7 +30,7 @@ function reloadOnChange(win: BrowserWindow) {
 }
 
 function launch() {
-	win = new BrowserWindow({
+	let win = new BrowserWindow({
 		width: 1050,
 		height: 800,
 		minWidth: 800,
@@ -56,7 +56,7 @@ function launch() {
 	const watcher = reloadOnChange(win);
 
 	win.on('closed', function() {
-		win = null;
+		let win = null;
 		watcher.close();
 	});
 }
