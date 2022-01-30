@@ -18,7 +18,10 @@
   let displayBin = true;
   function randomSN() {
     let SN = [];
+<<<<<<< Updated upstream
     let dump = new Buffer(540).fill(0);
+=======
+>>>>>>> Stashed changes
     for (var i=0; i < 9; i++)
     {
       SN.push(Math.floor(Math.random() * 255));
@@ -283,8 +286,12 @@
     </div>
   {/if}
   <div class="ui checkbox">
+<<<<<<< Updated upstream
     <input type="checkbox" checked="true" on:change={(evt) => console.log(randomSN())}>
     <label>shuffle serial number?</label>
+=======
+    <button class={"enter-btn ui basic red button"} on:click={() => console.log(randomSN())}>shuffle serial</button>
+>>>>>>> Stashed changes
   </div>
   <div class="ui middle aligned selection list">
     {#each params as param, idx}
