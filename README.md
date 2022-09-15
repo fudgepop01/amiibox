@@ -1,5 +1,7 @@
 [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/J3J8Y3EA)
 
+## Amiibox is now outdated, please see: https://github.com/jozz024/smash-amiibo-editor
+
 ### Amiibox Homepage & Download Link: https://fudgepop01.github.io/amiibox/
 
 ### Discuss questions, comments, or concerns on Discord: https://discord.gg/2v6pcw3zzg
